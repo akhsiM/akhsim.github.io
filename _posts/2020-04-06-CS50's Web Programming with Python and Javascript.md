@@ -550,7 +550,7 @@ def index(request):
 then in *newyear/templates/newyear*, we create *index.html*.
 
 Note that in the Django template language, we need to *end* our if statement with an endif.
-[[./img/CS50's Web Programming with Python and Javascript.org_20200706_010200_BotUGd.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200706_010200_BotUGd.png">
 
 If a client decide to inspect the source of our HTML, they would only see the final product of the template because the conditioning happens server-side, i.e all they see is "No".
 
@@ -571,7 +571,7 @@ h1 {
 ```
 
 Then, in our *newyear/index.html*, we'd need to *load* our static then reference the actual stylesheet, like this:
-[[./img/CS50's Web Programming with Python and Javascript.org_20200706_011246_aGU2ms.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200706_011246_aGU2ms.png">
 
 We could have hard-code the URL of our stylesheet instead of using Django dynamic language and the 'static' keyword. However, doing it this way is better, especially if we have large web application.
 
@@ -635,10 +635,10 @@ def index(request):
 and finally the template which will be using the *tasks* context variable:
 */tasks/templates/tasks/index.html*:
 
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_164157_AM6gNk.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_164157_AM6gNk.png">
 
 
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_164358_Jg0g5I.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_164358_Jg0g5I.png">
 
 ### Task Add function
 
@@ -661,9 +661,9 @@ urlpatterns = [
 
 the template *templates/tasks/add.html*:
 
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_164919_BM83fQ.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_164919_BM83fQ.png">
 
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_164941_LAUnfM.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_164941_LAUnfM.png">
 
 #### template inheritance
 
@@ -672,22 +672,22 @@ In the above example what we did was copying the layout of the HTML file from *i
 With pure HTML, there isn't. However with Django we can implement *template inheritance*. What we are doing is to set up a layout template that will be used by both *index.html* and *add.html*.
 
 *tasks/templates/tasks/layout.html*:
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_165709_3OJX8X.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_165709_3OJX8X.png">
 
 The *block* bit is the dynamic element.
 
 We can then go back to *index.html* and only leave the unique elements in index template and include an extends statement and state the block body.
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_170143_HTH721.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_170143_HTH721.png">
 
 same thing with the *add.html* file:
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_170240_wAOmwF.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_170240_wAOmwF.png">
 
 We may want to implement a link to navigate from one page to the other. Let's do this by ultilizing Django feature which is to use the name of the page, not hardcode it:
 *index.html*:
 
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_170722_c4xqHU.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_170722_c4xqHU.png">
 
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_170711_7xL709.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_170711_7xL709.png">
 
 This is made possible by specifying a name for each url path in the *urls.py* file.
 
@@ -706,35 +706,35 @@ urlpatterns = [
 ```
 
 - Then, reference the url like this in the *add.html* file, with the app_name, followed by colon, then the template name:
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_171435_QUP4jb.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_171435_QUP4jb.png">
 
 as well as the *index.html* file:
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_171458_TXXuGe.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_171458_TXXuGe.png">
 
 
 #### configure form submission and POST method
 
 We first need to configure the form element on our template to 1) send the submission to the right view `tasks:add` and use *POST* method. This method should be used for any action that changes the state of any component in our application.
 
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_172627_fvkNqi.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_172627_fvkNqi.png">
 
 after this, let's try to add a random task and hit submit..
 
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_172702_akij69.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_172702_akij69.png">
 
 The 403 errors mean forbidden/ no permission.
 
 What the hell is CSRF? It's "Cross-site request forgery" which means a security vulnerability that exists on a form. Theoreotically someone could trick our users into posting a form data to our application. CSRF authentication is turned on by Django on default. It's by a thing called *MiddleWare*:
 
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_173151_cLv6cK.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_173151_cLv6cK.png">
 
 What we need to do is to add a hidden csrf token into our form. This is unique and is generated every session a user opens our page. When our user submits the form, the token gets submitted with the form and is used to check to make sure that the token is indeed valid and the form submission is OK to go on.
 
 This is very easy:
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_173235_69YW8A.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_173235_69YW8A.png">
 
 If we view the source of our add page, we can see the csrf token:
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_173316_ViJ808.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_173316_ViJ808.png">
 
 and now the form will submit without error.
 
@@ -767,7 +767,7 @@ def add(request):
 
 Then we can access the form in our *add.html* template:
 
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_174456_XWvyM6.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_174456_XWvyM6.png">
 
 The powerful thing about this is if we need to change anything in our form, we can do it within *views.py* in Django instead of doing it on the template. Let's say we want to put a priority field in:
 
@@ -797,9 +797,9 @@ def add(request):
 
 Django also does the data validation for us. This is *client-side validation* which is not done by the server (we can see this by viewing the source of the page).
 
-[[./img/djangoval.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/djangoval.png">
 
-[[./img/djangoval2.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/djangoval2.png">
 
 We can also do *server-side validation*. We can do it by editing the *add()* function to be able to handle a POST request. We will also change the *max_value* of priority to *5* on the server. Note that the client session would still have max_value=10 cached so they don't know of this new max_value yet.
 
@@ -841,7 +841,7 @@ def add(request):
 
 Then if we submitted 8 in priority, which would previously be accepted by the server, we'd see this:
 
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_175622_RzUZbm.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_175622_RzUZbm.png">
 
 This is why we generally want *both* client-side and server-side validation.
 
@@ -915,7 +915,7 @@ def add(request):
 ```
 
 However, if we go to our tasks now, we'd see:
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_180837_ISgOvd.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_180837_ISgOvd.png">
 
 To address we'd need to create all of the *default tables* inside our Django database by running:
 
@@ -947,7 +947,7 @@ Running migrations:
 ```
 
 We can also update the template to check if the task list is empty:
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_182011_n8rWns.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_182011_n8rWns.png">
 
 We also need to update our *views.py* file to refer to `request.session["tasks"]` instead of the previously configured global variable.
 
@@ -991,7 +991,7 @@ def add(request):
 
 Now, the task list is individual to each session that is stored by the browser cookie. We can test this by using an in cognito browsing session:
 
-[[./img/CS50's Web Programming with Python and Javascript.org_20200709_182304_16f79z.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50's Web Programming with Python and Javascript.org_20200709_182304_16f79z.png">
 
 # Lecture 4 - Django SQL
 
@@ -1009,7 +1009,7 @@ Django Models are a way of representing SQL data inside our Django applications.
 
 Let's start working on an airline project with a flights app.
 
-[[./img/CS50W.org_20200727_010357_pQmzRi.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200727_010357_pQmzRi.png">
 
 After configuring the apps and urls, let's look into *flights/models.py*. We'll start by creating a Flight model.
 ```python
@@ -1220,14 +1220,14 @@ def index(request):
 ### Then, the template
 
 the *layout.html*:
-[[./img/CS50W.org_20200728_225538_KXCzzH.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_225538_KXCzzH.png">
 
 then the actual *index.html*:
-[[./img/CS50W.org_20200728_225648_vYsOTQ.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_225648_vYsOTQ.png">
 
 ### result
 
-[[./img/CS50W.org_20200728_225731_bJuXdq.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_225731_bJuXdq.png">
 
 Let's add a new flight
 
@@ -1253,7 +1253,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 Then, we refresh our page, and BAM:
 
-[[./img/CS50W.org_20200728_230232_E7BrQa.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_230232_E7BrQa.png">
 
 ### Django Admin
 
@@ -1265,7 +1265,7 @@ python manage.py createsuperuser
 ```
 
 If we go to the Admin page now, we'd only see this:
-[[./img/CS50W.org_20200728_230737_w7hlhR.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_230737_w7hlhR.png">
 
 We need to configure our Admin app:
 
@@ -1282,7 +1282,7 @@ admin.site.register(Flight)
 With this, we are telling the Django Admin App that "we would like to use the Admin App to manipulate flights and airports."
 
 Then, if we fresh our admin app:
-[[./img/CS50W.org_20200728_230936_5cYnGX.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_230936_5cYnGX.png">
 
 ### Fancy up our page
 
@@ -1319,10 +1319,10 @@ def flight(request, flight_id):
 ```
 
 and then the template *templates/flights/flight.html*:
-[[./img/CS50W.org_20200728_231926_xKJQUi.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_231926_xKJQUi.png">
 
 We can verify that the page is working:
-[[./img/CS50W.org_20200728_231949_WNO8sn.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_231949_WNO8sn.png">
 
 #### Add Passenger
 
@@ -1367,7 +1367,7 @@ admin.site.register(Flight)
 admin.site.register(Passenger)
 ```
 
-[[./img/CS50W.org_20200728_232834_CpVTlj.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_232834_CpVTlj.png">
 
 Then, now, we want to show all passengers on any given flight..
 
@@ -1394,15 +1394,15 @@ def flight(request, flight_id):
 
 then we update our *templates/flights/flight.html*
 
-[[./img/CS50W.org_20200728_233356_5XNyW6.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_233356_5XNyW6.png">
 
-[[./img/CS50W.org_20200728_233408_fMLZPc.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_233408_fMLZPc.png">
 
 last is to configure our index page:
 
-[[./img/CS50W.org_20200728_233528_FgRfPC.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_233528_FgRfPC.png">
 
-[[./img/CS50W.org_20200728_233537_a7WhU3.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200728_233537_a7WhU3.png">
 
 # Lecture 5 - JavaScript
 ## General JS
@@ -1414,11 +1414,11 @@ last is to configure our index page:
 
  For example, if we have these code:
 
- [[./img/CS50W.org_20200919_221433_3w59kx.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_221433_3w59kx.png">
 
  When we open the the html file, we'd see:
 
- [[./img/CS50W.org_20200919_221449_trZdWD.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_221449_trZdWD.png">
 
 ### Event-Driven programming
 
@@ -1430,17 +1430,17 @@ last is to configure our index page:
  - Created a function `hello()` that display the alert when called.
  - We added a button on our page.  We also add an attribute to this button attribute called *onclick* that adds an onclick *handler* to the button.
 
- [[./img/CS50W.org_20200919_222353_XDxcab.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_222353_XDxcab.png">
 
- [[./img/CS50W.org_20200919_222406_cjtnpc.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_222406_cjtnpc.png">
 
 ### Variables
 
  We can create a simple webpage that has a counter function like the below. In this example we use a variable called *counter*. In this example, we'll write a simple page that increments the counter variable and display to us the value of this counter.
 
- [[./img/CS50W.org_20200919_223135_YYpeQf.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_223135_YYpeQf.png">
 
- [[./img/CS50W.org_20200919_223146_FCkuPl.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_223146_FCkuPl.png">
 
 #### `let` vs `var`
 
@@ -1458,15 +1458,15 @@ A variable defined using a `let` statement is onlw known through *the block* it'
 
  We then manipulate the content of the `h1` element by using `innerHTML` to update the inner HTML property to 'Goodbye':
 
- [[./img/CS50W.org_20200919_223713_naawwp.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_223713_naawwp.png">
 
  When we open the page, it'll look like this:
 
- [[./img/CS50W.org_20200919_223813_rPAPDB.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_223813_rPAPDB.png">
 
  After we click on the button:
 
- [[./img/CS50W.org_20200919_223833_ni27GT.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_223833_ni27GT.png">
 
 ### Conditions
 
@@ -1486,13 +1486,13 @@ A variable defined using a `let` statement is onlw known through *the block* it'
  }
  ```
 
- [[./img/CS50W.org_20200919_224454_SDfd1P.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_224454_SDfd1P.png">
 
  Our code right now looks OK but still a bit clunky because we repeat the `document.querySelector()` bit three times. We can improve it by storing this value in a variable
 
  If we have a variable that we know we won't ever be changing, instead of using `let` we can change it to `const`. This tell JS that we'll never be changing the value of the variable to anything else.
 
- [[./img/CS50W.org_20200919_230812_Dqv7Cc.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_230812_Dqv7Cc.png">
 
  We can update our *counter* html page so that instead of just displaying the alert, we'll update the value of a h2 property to display the counter.
 
@@ -1500,7 +1500,7 @@ A variable defined using a `let` statement is onlw known through *the block* it'
 
  In order to write a string with a variable/ constant inside it, we wrap the string within two back ticks (```). This is equivalent to the formatted string in Python. The actual variable also needs to be wrapped in curly braces with a dollar sign in front of it.
 
- [[./img/CS50W.org_20200919_231937_5yj5d1.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_231937_5yj5d1.png">
 
 ### Separating the JavaScript from the HTML using Event Listener
 
@@ -1519,11 +1519,11 @@ A variable defined using a `let` statement is onlw known through *the block* it'
 ### `addEventListener()` and `'DOMContentLoaded'`
 
  Let's say we have this:
- [[./img/CS50W.org_20200919_233035_tzaqmo.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_233035_tzaqmo.png">
 
  When we open our page and click on the Count button, we'd realise that it does not work and the Count button does not do anything at all. When we run into problems like this, we can inspect the page and look at the *Console* to investigate the error. For example, if we inspect the console of our *counter.html* page, we'd see this:
 
- [[./img/CS50W.org_20200919_233135_tzMfhI.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_233135_tzMfhI.png">
 
  If we look at line 16 of our code:
  ```html
@@ -1560,7 +1560,7 @@ A variable defined using a `let` statement is onlw known through *the block* it'
  });
  ```
 
- [[./img/CS50W.org_20200919_234310_4PbIQ4.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_234310_4PbIQ4.png">
 
  Note: 
  - The `'DOMContentLoaded'` event is a special event that is only going to be fired or triggered when all the DOM content of the page is done loading.
@@ -1582,7 +1582,7 @@ A variable defined using a `let` statement is onlw known through *the block* it'
  - Add a `src` attribute to the `<script>` tag that points to this file.
 
  For our counter example, we'd do it like this:
- [[./img/CS50W.org_20200919_235231_qD17p8.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_235231_qD17p8.png">
 
  This way out HTML file looks a bit simpler and more readable that the JS codes are separate in a different file.
 
@@ -1594,7 +1594,7 @@ A variable defined using a `let` statement is onlw known through *the block* it'
 
  Let's start making another example of a page that can be more interactive in that the user can interact with a page via a form.
 
- [[./img/CS50W.org_20200919_235829_QdemIp.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200919_235829_QdemIp.png">
 
  Now, inside of our JS, we'll remove the hello() function to instead write a simple function that will say Hello to us in an alert box, after we submit our name. The js will look like this. Note that the `document.addEventListener('DOMContentLoaded', function ()....` bit is something that we'll see very often.
 
@@ -1607,7 +1607,7 @@ A variable defined using a `let` statement is onlw known through *the block* it'
  })
  ```
 
- [[./img/CS50W.org_20200920_000224_JUb6oX.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_000224_JUb6oX.png">
 
  Note:
  - We use `const` instead of `let` for the name variable since we know that we wouldn't be changing the variable.
@@ -1620,7 +1620,7 @@ A variable defined using a `let` statement is onlw known through *the block* it'
  Not only that we can change the content of our HTML page, we can also interact with the styles of our page as well.
 
  Let's start with a simple HTML page with three buttons:
- [[./img/CS50W.org_20200920_001211_PZP6H2.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_001211_PZP6H2.png">
 
  Let's get the button to work by using JavaSript.
 
@@ -1655,7 +1655,7 @@ A variable defined using a `let` statement is onlw known through *the block* it'
 
  We'd then have our page with the functional buttons that changes the 'Hello, world!' text color.
 
- [[./img/CS50W.org_20200920_002418_SMTP87.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_002418_SMTP87.png">
 
 ### `document.querySelectorAll()` and `forEach()`  
 
@@ -1683,10 +1683,10 @@ A variable defined using a `let` statement is onlw known through *the block* it'
  To demonstrate this, we can actually utilize the console within our web browser, notice how only the first button is picked up:
 
  `document.querySelector()`
- [[./img/CS50W.org_20200920_003427_kTsJhg.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_003427_kTsJhg.png">
 
  `document.querySelectorAll()`
- [[./img/CS50W.org_20200920_003527_YVTstj.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_003527_YVTstj.png">
  /(A NodeList object is a collection of document nodes which is an array-like list of object.)/
 
  Now that we have our list of all the button elements, we'd like to add an event listener that deal with each button individually. We can use a property called `forEach()`. This function accepts *another function* as its argument. What it does is:  for each of these  element, perform this function.
@@ -1701,7 +1701,7 @@ A variable defined using a `let` statement is onlw known through *the block* it'
  });
  ```
 
- [[./img/CS50W.org_20200920_004607_wjTJVs.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_004607_wjTJVs.png">
 
  *Note*:
  - The anonymous function that we pass to the `forEach()` function takes an argument: button. This way we'll access the individual button as our function iterates through three buttons.
@@ -1796,7 +1796,7 @@ A variable defined using a `let` statement is onlw known through *the block* it'
  In the above example, we have been using the `onclick` event listener which listens to mouse click event, as well as the `'DOMContentLoaded'` event when the full DOM has been loaded.
 
  Let's say we want to change our page, from three buttons to a dropdown list using the `<select>` tag, like this:
- [[./img/CS50W.org_20200920_221708_gSIlqn.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_221708_gSIlqn.png">
 
 
  We can use a new event listener called `onchange`, which apply to things like select drop-down menu. When the user changes their selection, that event will be picked up by the `onchange` event listener.
@@ -1823,7 +1823,7 @@ A variable defined using a `let` statement is onlw known through *the block* it'
  });
  ```
 
- [[./img/CS50W.org_20200920_224057_POCPzN.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_224057_POCPzN.png">
 
  *Note*:
  - `this`, in an event listener function, refers to the drop-down menu, which is the  element that received the event. In the above example specifically, it means "get the value of the drop-down menu that received the event `onchange`".
@@ -1846,9 +1846,9 @@ A variable defined using a `let` statement is onlw known through *the block* it'
 In the Django lesson, we built a TODO list with a webserver logic, however, we can actually build one with just javascript.
 
 Let's start with a simple HTML:
-[[./img/CS50W.org_20200920_225311_y7LbKL.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_225311_y7LbKL.png">
 
-[[./img/CS50W.org_20200920_225324_gPgQmM.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_225324_gPgQmM.png">
 
 Technically, we have an unordered list within our page, however there is nothing in it yet.
 
@@ -1871,7 +1871,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 ```
-[[./img/CS50W.org_20200920_225840_Kfzlum.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_225840_Kfzlum.png">
 
 However, this is not all that we want. What we are wanting to happen is to add an element into the `<ul>` tag. This item will be wrapped in `<li>`.
 
@@ -1901,11 +1901,11 @@ However, we'll have a small bug at this point, even if the user hits the submit 
 
 
 
-[[./img/CS50W.org_20200920_231422_uphHq9.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_231422_uphHq9.png">
 
 What we want to do is to disable the submit button until the user has actually typed something into the text field. We can do this by JavaScript. To do this, we'd also need to id our submit button:
 
-[[./img/CS50W.org_20200920_231526_AO5Sw0.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_231526_AO5Sw0.png">
 
 For this, we'll also be using a new event called `onkeyup`. This is when the user a key is lifted up from the keyboard.
 
@@ -1963,7 +1963,7 @@ For example, let's return to our counter page an add an interval tso that even i
 For this, we'll use the `setInterval()` function. In it, the first argument is the function to be run, and the second argument is the time (in *miliseconds*).
 
 This is our HTML:
-[[./img/CS50W.org_20200920_233039_JasPSb.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_233039_JasPSb.png">
 
 This is our js:
 ```js
@@ -1983,7 +1983,7 @@ document.addEventListener('DOMContentLoaded', function () {
 ```
 
 The count function will run on itself:
-[[./img/CS50W.org_20200920_233111_0Qk6i6.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_233111_0Qk6i6.png">
 
 ## Local Storage
 
@@ -2000,7 +2000,7 @@ Two key functions that we'll need to utilize are:
 Let's employ this to retain our counter value.
 
 Here is our HTML:
-[[./img/CS50W.org_20200920_234517_FGqk3k.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200920_234517_FGqk3k.png">
 
 *BEFORE*:
 ```js
@@ -2054,7 +2054,7 @@ let person = {
 	last: 'Potter',
 }
 ```
-[[./img/CS50W.org_20200921_000413_g8yTN4.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_000413_g8yTN4.png">
 
 One way in which JavaScript Objects are really useful is in transferring data from one site to another, particularly when using APIs. APIs, in the context of web application are structured form communication between two different applciations. 
 
@@ -2114,7 +2114,7 @@ For example, we can visit https://api.exchangeratesapi.io/latest?base=USD to see
 For this example, we'll also be looking at Ajax which is *asynchronous JavaScript and XML*. The idea is even after a page has loaded, using JavaScript we can continue to make additional web requests, to our own web servers or some third party web servers to get additional data.
 
 We'll start with retrieving the data using an asynchronous call with `fetch()` and print the data to console:
-[[./img/CS50W.org_20200921_003135_34dkiF.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_003135_34dkiF.png">
 
 ```js
 document.addEventListener('DOMContentLoaded', function () {
@@ -2129,7 +2129,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 ```
 
-[[./img/CS50W.org_20200921_003202_LBxG4H.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_003202_LBxG4H.png">
 
 *Note*:
 -  The return of the `fetch()` function is something that is known in JavaScript as a *promise*. A promise is a way of representing the idea that "something is coming back, but it may not come back immediately". We'd then need to add a second line that starts with `.then()` which is to say "when this comes back, do this". In the above example, we want to convert the response into a json.
@@ -2160,7 +2160,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
 });
 ```
-[[./img/CS50W.org_20200921_003930_qrHIzP.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_003930_qrHIzP.png">
 
 
 
@@ -2172,7 +2172,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 We will start by altering our HTML content to allow the user tp input a currency.
 
-[[./img/CS50W.org_20200921_004223_LXpNFQ.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_004223_LXpNFQ.png">
 
 ```js
 document.addEventListener('DOMContentLoaded', function () {
@@ -2202,10 +2202,10 @@ document.addEventListener('DOMContentLoaded', function () {
 ```
 
 With a valid currency:
-[[./img/CS50W.org_20200921_004754_JsKHEs.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_004754_JsKHEs.png">
 
 Without a valid currency:
-[[./img/CS50W.org_20200921_004815_ycoWow.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_004815_ycoWow.png">
 
 ### Small improvements
 
@@ -2242,7 +2242,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 ```
 
-[[./img/CS50W.org_20200921_005304_U2VrvN.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_005304_U2VrvN.png">
 # Lecture 6 - User Interfaces
 
 In Lecture 5 we learned how to use JavaScript to make web pages more interactive by accessing and manipulating the DOM and listening to events. 
@@ -2256,14 +2256,14 @@ Using JavaScript, we can create an application that consists of a single HTML pa
 
 Let's start with a HTML page that has three div elements that are hidden using CSS.
 
-[[./img/CS50W.org_20200921_150934_WFsIuB.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_150934_WFsIuB.png">
 
 Let's add some buttons that will allow us to toggle these three elements on and off.
 - Add three buttons to the HTML page
 - Add some data attribute to the buttons to store custom data
 - Add javascript file
 
-[[./img/CS50W.org_20200921_151729_XfNl0J.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_151729_XfNl0J.png">
 
 Let's start with this simple js:
 
@@ -2277,7 +2277,7 @@ function showPage(page) {
 ## Introducing `showPage()` function
 
 The buttons won't do anything yet, however we can use the Console to test them:
-[[./img/CS50W.org_20200921_151921_aJv2Cr.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_151921_aJv2Cr.png">
 
 This introduces a small logical error, we don't want to display more than one elements at once. Instead, let's add some logic so that before any new div opens, all other divs close:
 
@@ -2292,7 +2292,7 @@ function showPage(page) {
 ```
 
 
-[[./img/CS50W.org_20200921_152150_ip6McO.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_152150_ip6McO.png">
 
 ## Make the buttons work by attaching `showPage()`
 
@@ -2376,7 +2376,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 ```
-[[./img/CS50W.org_20200921_154418_Mwk9Qq.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_154418_Mwk9Qq.png">
 
 ## Manipulating the URL
 
@@ -2427,7 +2427,7 @@ The popstate event is only triggered by performing a browser action, such as cli
 When we open our single page and click on any of the buttons, not only that we'll see the content being updated, we'll also see the URL address being changed.
 
 If we dive into the console, we'd also see the console log that prints the section content. This is used when the user click the *back arrow* button. 
- [[./img/CS50W.org_20200921_160056_4OdH09.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_160056_4OdH09.png">
 
 ## `window`, `document` and interacting with scrolling
 
@@ -2437,7 +2437,7 @@ For example:
 - `window.innerWidth` can be used to find out how wide the window is.
 - `window.innerHeight` 
 
-[[./img/CS50W.org_20200921_160652_CLWUIF.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_160652_CLWUIF.png">
 
 Whereas the `window` represents what is *visible* to the user, we can also use the `document` object which refers to the *entire web page* and is often much larger than the `window`. 
 
@@ -2445,7 +2445,7 @@ When the webpage is long, we'll not be able to fit everything into the window, f
 - `window.scrollY` is a variable that can be used to find out how many pixels we have scrolled from the top of the page.
 - `document.body.offsetHeight` represents the height in pixels of the entire documents.
 
-[[./img/CS50W.org_20200921_160927_T74dEe.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_160927_T74dEe.png">
 
 We can use the above measures to determine whether or not the user has scrolled to the end of the page using the combination `window.scrollY + window.innerHeight >= document.body.offsetHeight`.
 
@@ -2468,7 +2468,7 @@ window.onscroll = () => {
 };
 ```
 
-[[./img/CS50W.org_20200921_161449_kgB5vl.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_161449_kgB5vl.png">
 
 ## Infinite Scroll
 
@@ -2525,7 +2525,7 @@ def posts(request):
 
 Now, we look into the *index.html* template. We'll start out with only an empty `div` in the body and some styling.
 
-[[./img/CS50W.org_20200921_222039_j5yT86.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_222039_j5yT86.png">
 
 now, using JavaScript, we'll wait until the user scrolls to the end of the page and the nload more posts using our API:
 
@@ -2577,8 +2577,8 @@ function add_post(contents) {
 ```
 
 With this, we have created a site with infinite scroll:
-[[./img/CS50W.org_20200921_222720_3n96dP.png]]
-[[./img/CS50W.org_20200921_222925_UNG6Us.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_222720_3n96dP.png">
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_222925_UNG6Us.png">
 
 ## Animation
 
@@ -2593,7 +2593,7 @@ In the below example, we will be using the CSS `@keyframe` rule that specifies a
 We can specify the change that will happen in percentage, or with keywords "from" and "to" which is the same as 0% and 100% where 0% is the begin of the animation.
 
 This is our simple HTML page:
-[[./img/CS50W.org_20200921_223652_YOfVGw.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_223652_YOfVGw.png">
 
 If we go to our page, the Welcome text will grow from 20px to 100px during 2 seconds.
 
@@ -2601,20 +2601,20 @@ If we go to our page, the Welcome text will grow from 20px to 100px during 2 sec
 
 We can also have a move animation
 
-[[./img/CS50W.org_20200921_223854_SfCOM2.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_223854_SfCOM2.png">
 
 Instead of specifying only two points, start and finish, we can also specify various different keyframes with different set of CSS properties. Let's implement this to have our text instead bounce from left to right, and back to left.
 
-[[./img/CS50W.org_20200921_224228_O4sQW1.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_224228_O4sQW1.png">
 
 We can also add the `animation-iteration-count` property to specify how many iterations of animation we would like to run.
-[[./img/CS50W.org_20200921_224324_yRZNA7.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_224324_yRZNA7.png">
 
 We can also set `animation-iteration-count` to infinite to have the animation run forever without stop.
 
 What we'll work on now is to add a button that can control the animation. We'll do this by working with the `animationPlayState` property of the animation style.
 
-[[./img/CS50W.org_20200921_230856_eY8bf4.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_230856_eY8bf4.png">
 
 ### hide
 
@@ -2718,7 +2718,7 @@ In declarative programming, we simply write code explaining what we *wish* to di
 *IMPERATIVE PROGRAMMING example*:
 
 View:
-[[./img/CS50W.org_20200921_234144_0zGB8Z.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_234144_0zGB8Z.png">
 
 Logic: 
 ```js
@@ -2730,7 +2730,7 @@ document.querySelector('h1').innerHTML = num;
 *DECLARATIVE PROGRAMMING example*:
 
 View:
-[[./img/CS50W.org_20200921_234331_TnUf58.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200921_234331_TnUf58.png">
 
 Logic:
 ```js
@@ -2793,7 +2793,7 @@ The last line of our script, we should employ the `ReactDOM.render` function whi
 </script>
 ```
 
-[[./img/CS50W.org_20200922_001235_OudMNX.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200922_001235_OudMNX.png">
 
 ### Layering React components 
 
@@ -2810,9 +2810,9 @@ class Hello extends React.Component {
 
 then, we can add the Hello component that we just created multiple times within the App class:
 
-[[./img/CS50W.org_20200922_001808_uBEg33.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200922_001808_uBEg33.png">
 
-[[./img/CS50W.org_20200922_001820_8SaZHL.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200922_001820_8SaZHL.png">
 
 ### Using React props to add additional properties
 
@@ -2849,7 +2849,7 @@ class Hello extends React.Component {
 }
 ```
 
-[[./img/CS50W.org_20200922_002453_xSNe0x.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200922_002453_xSNe0x.png">
 
 
 
@@ -2887,7 +2887,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 
-[[./img/CS50W.org_20200922_003915_Y1NmxR.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200922_003915_Y1NmxR.png">
 
 Now, let's add functionality to the count button. Note, in React, we need to use `onClick` instead of onclick. 
 
@@ -2928,7 +2928,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 
 
-[[./img/CS50W.org_20200922_004811_feoqsY.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200922_004811_feoqsY.png">
 
 
 
@@ -2939,7 +2939,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 Putting all the pieces together and taking advantages of React declartive programming, let's build simple addition game.
 
 We can keep the same boilerplate code body from *counter.html* before:
-[[./img/CS50W.org_20200922_222600_Htoyex.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200922_222600_Htoyex.png">
 
 When we use React or any form of declarative programming, the most important thing to think about is what are the things that we should include inside the state of the application?  What need to change in the application?
 
@@ -3157,7 +3157,7 @@ Last but not least, some styling.
 
 ### The final product
 
-[[./img/CS50W.org_20200923_000742_SyzHkq.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200923_000742_SyzHkq.png">
 
 # Lecture 7 - Testing and CI/CD
 ## Testing
@@ -3753,9 +3753,9 @@ pip install chromedriver-py selenium
 Let's say we have a simple web application *counter.html* and we want to test the code.
 
 Here is counter.html:
-[[./img/CS50W.org_20200928_233430_wX4Tv0.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200928_233430_wX4Tv0.png">
 
-[[./img/CS50W.org_20200928_233527_rCXYN2.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200928_233527_rCXYN2.png">
 
 We can of course test our code by opening the page with our web browser and interact with the buttons. However, this gets very tedious as we write larger and larger single page application. 
 
@@ -3789,7 +3789,7 @@ First, we run the following, which will init the driver object and open up a Chr
 from test import *
 ```
 
-[[./img/CS50W.org_20200928_234610_FJqiES.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200928_234610_FJqiES.png">
 
 - Find the URI of the file:
 ```python
@@ -3800,7 +3800,7 @@ uri = file_uri('counter.html')
 ```python
 driver.get(uri)
 ```
-[[./img/CS50W.org_20200928_234706_xdRcdT.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200928_234706_xdRcdT.png">
 
 See the title:
 ```python
@@ -3887,7 +3887,7 @@ if __name__ == "__main__":
 
 Then we can run our *test.py*:
 
-[[./img/CS50W.org_20200929_003028_X1X6u6.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_003028_X1X6u6.png">
 One key thing that we should notice is that Selenium test the web page *incredibly fast*.
 
 
@@ -3924,7 +3924,7 @@ key3:
  
 Let's create some Github workflow in action, for this, I have downloaded the source code files from the lecture. The source code contains Python code for the airline Django project. It looks like this:
 
-[[./img/CS50W.org_20200929_005256_f68IYg.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_005256_f68IYg.png">
 
 Within the project, we need a directory named `.github`, then a directory `workflow` within it. Then, within the `workflow` folder, we'll need to create the `ci.yml` file that will contain the configuration for our github action.
 
@@ -3963,25 +3963,25 @@ This is the repo: https://github.com/akhsiM/cs50w-cicd-airline
 
 With the erroneous logic in our code, it was destined to fail. And it did!:
 
-[[./img/CS50W.org_20200929_010859_afOkK9.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_010859_afOkK9.png">
 
 In the above image, we could see that the `test_project` job failed within the workflow `Testing`:
-[[./img/CS50W.org_20200929_011014_A4V7w0.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_011014_A4V7w0.png">
 
 and that the step that failed was `Run Django unit tests`:
-[[./img/CS50W.org_20200929_011157_P4UwbY.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_011157_P4UwbY.png">
 
 and it failed because the execution of our unit test failed:
-[[./img/CS50W.org_20200929_011235_Gf6AqN.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_011235_Gf6AqN.png">
 
 Let's fix our code now and commit again. We'll notice in the *Actions* tab that an action is running after the push was done:
-[[./img/CS50W.org_20200929_011905_j8bat8.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_011905_j8bat8.png">
 
 I also cheekily added an extra step `'Hello World' in our `test_project` job:
-[[./img/CS50W.org_20200929_012040_br3MPs.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_012040_br3MPs.png">
 
 And VOILA!
-[[./img/CS50W.org_20200929_012111_S2Tmst.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_012111_S2Tmst.png">
 
 
 
@@ -4032,14 +4032,14 @@ A single server can handle only so many requests at once, forcing us to plan in 
 
 Once we have some upper limit on how many requests our server can handle at any given time, we can begin to think about how we want to handle the scaling of our application. There are two different approaches to scaling:
 - *Vertical Scaling*: When our server is overwhelmed, we simply buy/ build a *larger* server. Limitation is the upperlimit of a single server.
-[[./img/CS50W.org_20200929_132052_5SWvkw.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_132052_5SWvkw.png">
 
 - *Horizontal Scaling*: When our server is overwhelmed, we buy our build *more* servers and split the requests among out multiple servers. 
-[[./img/CS50W.org_20200929_132106_IG2z9I.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_132106_IG2z9I.png">
 
 ## Load Balancing
 
-[[./img/CS50W.org_20200929_132709_oXNcNf.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_132709_oXNcNf.png">
 
 Horitzontal scaling leads us to an additional problem that need to be solved. That problem is /'How can we decide which servers are assigned to which requests?'./
 
@@ -4081,12 +4081,12 @@ Even after we've scaled a database, we still have a single point of failure whic
 Just as we added more servers to avoid a single point of failure, we can add additional copies of our database to make sure the failure of one database does not shutdown the whole application. Similarly to other problems, there are a few methods of database replication:
 
 - *Single-Primary Replication*: There are multiple databases. However *only one* is considered the primary database. Only this primary database can be written to. Writebacks to this primary database is updated across the other databases. Drawback: still a single point of failure with writeback activity. If the primary database is down, no update can be made to our database.
-[[./img/CS50W.org_20200929_135021_YYEjYN.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_135021_YYEjYN.png">
 - *Multi-Primary Replication*: All databases can be read from and written to. This solves the problem of single point of failure however the tradeoff is the challenge with keeping all databases up to date and that all of them need to be in sync. This setup also opens up our database to different conflict scenarios:
   - Update conflict: more than one user updating the same row.
   - Uniqueness conflict: Same identifier being assined to more than one entries.
   - Delete conflict: One user deletes a row when another user updates it.
-[[./img/CS50W.org_20200929_135034_DleJkJ.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_135034_DleJkJ.png">
 
 ## Caching
 
@@ -4109,7 +4109,7 @@ This method is used commonly especially for files that are less likely to change
 ### Server-side 
 
 In addition to client-side caching, it can be useful to introduce some caching mechanism on the server side. With this, our backend setup will look a bit like:
-[[./img/CS50W.org_20200929_144753_dHqMG5.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_144753_dHqMG5.png">
 
 Django has an entire cache framework that allows us to leverage this ability to speed up our requests. It offers several ways of implementing a cache:
 - *Per-View Caching*: This allows us to decide that once a specific view has been loaded, that same view can be rendered without going through the function for the next specified amount of time.
@@ -4144,19 +4144,19 @@ As HTML is sent to the user as part of the requests, everyone has access to the 
 
 HTTPS and HTTP are both Internet protocols to transfer data from one computer to another through a series of server.
 
-[[./img/CS50W.org_20200929_172000_YTRneA.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_172000_YTRneA.png">
 
 HTTPS is the protocol that is used more widely these days. It is similar to HTML however data is transferred *encrypted*. It's only decrypted for the sender and receiver of the message.
 
 ### Secret-Key Cryptography
-[[./img/CS50W.org_20200929_172341_GnfJD6.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_172341_GnfJD6.png">
 
 In this approach, the sender and receiver both have access to a secret key that only they know. The private key and the plaintext message are used to generate a Ciphertext which is the encrypted version of the message.
 
 In the context of the internet, this solution is actually not very practical because we'd need a method to communicate and transfer the private key. This would be an avenue of vulnerabilities then. Hence, the sender and recipient may have to meet in-person to exchange a key securely. With the number of websites that we interact with on a daily basis, in-person meetups aren't an option.
 
 ### Public-Key Cryptography
- [[./img/CS50W.org_20200929_172610_vTOiPe.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_172610_vTOiPe.png">
 
  In this approach, one of the key is allowed to be public. We'll have two keys, one public and one private key.
 
@@ -4175,7 +4175,7 @@ There are a plethora of ways that information can be leaked, with simpler one be
 
 We also have to be aware of SQL injection attack when we use straight vanilla SQL in our code. Django of course takes care of this for us.
 
-[[./img/CS50W.org_20200929_175040_4ZjwiI.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_175040_4ZjwiI.png">
 
 ### APIs
 
@@ -4201,10 +4201,10 @@ This is quite similar to SQL injection attack. In any scenario that the user can
 Django is good at prevent CSRF attacks where a request to a website can be faked without the intention of making the request.
 
 Any time that we we create a site that allow state changes, we *don't want* to allow that via GET request. Otherwise, attacks like these can happen:
-[[./img/CS50W.org_20200929_180242_izUwRD.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_180242_izUwRD.png">
 
 *This type of activies should only be done using POST requests*. Even then, POST requests can still be forged, e.g. using *hidden* form input. Example:
-[[./img/CS50W.org_20200929_180156_zCN3gn.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CS50W.org_20200929_180156_zCN3gn.png">
 
 We can use this by using `% csrf_token %` in our template to  make sure that only forms with the csrf token are accepted.
 
