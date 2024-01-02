@@ -22,6 +22,8 @@ nav-menu:
   permalink: about
 - text: Blog
   permalink: blog
+- text: Tags
+  permalink: tag
 ## TODO: Consider re-organising posts into Notes and Posts
 # - text: Notes
 #   permalink: notes
