@@ -1,0 +1,159 @@
+#+TITLE:Working with JSON Data using Python json module
+#+DATE:
+#+SETUPFILE: https://akhsim.github.io/read-akhsiM-orgs/theme-readtheorg-akhsiM.setup
+
+* General
+
+We are learning how to work with JSON data in Python.
+
+JSONs are used a lot when fetching data from online API. However it's also used for config files as well as for different type of data storage.
+
+JSON stands for *Javascript Object Notation*. However it's inspired by Javascript but is now language independent. Any language now has a module to work with JSON.
+
+* Work
+
+** Intro
+First of all we have to import the ~json~ library
+
+#+begin_src python 
+import json
+#+end_src
+
+A JSON file normally looks almost like a Python *dictionary*. 
+
+For example, the below is a Python string that just happens to be a valid JSON.
+
+#+begin_src python
+people_string = ''' 
+{
+    "people": [
+        {
+            "name": "John Doe",
+            "phone": "123-456-678",
+            "emails": ["john.doe@john.com", "john.doe@doe.com"],
+            "has_license": false
+        },
+        {
+            "name": "Jane Doe",
+            "phone": "234-456-789",
+            "emails": null,
+            "has_license": true
+        }
+    ]
+}
+'''
+#+end_src
+
+** Python-JSON conversion
+
+We can use ~json.loads()~ to load the string into a json object.
+
+Interestingly, JSON objects are translated into a dictionary in Python:
+
+#+BEGIN_SRC python :exports both :results output :session
+data = json.loads(people_string)
+print(data)
+print(type(data))
+#+END_SRC
+#+begin_src 
+{'people': [{'name': 'John Doe', 'phone': '123-456-678', 'emails': ['john.doe@john.com', 'john.doe@doe.com'], 'has_license': False}, {'name': 'Jane Doe', 'phone': '234-456-789', 'emails': None, 'has_license': True}]}
+<class 'dict'>
+#+end_src
+
+*** JSON Translation/ Conversion table 
+
+| JSON         | Python |
+|--------------+--------|
+| object       | dict   |
+| array        | list   |
+| string       | str    |
+| number(int)  | int    |
+| number(real) | float  |
+| true         | True   |
+| false        | False  |
+| null         | None   |
+
+** Accessing data within a JSON
+
+Json object is a dict, so we can access the individual key..
+#+begin_src python
+print(data["people"])
+#+end_src
+#+begin_src 
+[{'name': 'John Doe', 'phone': '123-456-678', 'emails': ['john.doe@john.com', 'john.doe@doe.com'], 'has_license': False}, {'name': 'Jane Doe', 'phone': '234-456-789', 'emails': None, 'has_license': True}]
+(base) 
+#+end_src
+
+Using for loop:
+
+#+begin_src python
+for person in data["people"]:
+    print(person)
+#+end_src
+#+begin_src 
+{'name': 'John Doe', 'phone': '123-456-678', 'emails': ['john.doe@john.com', 'john.doe@doe.com'], 'has_license': False}
+{'name': 'Jane Doe', 'phone': '234-456-789', 'emails': None, 'has_license': True}
+#+end_src
+
+or individual attribute with in individual keys
+
+#+begin_src python
+for person in data["people"]:
+    print(person["name"])
+#+end_src
+#+begin_src 
+John Doe
+Jane Doe
+#+end_src
+
+** JSON-Python conversion
+
+The ~json.loads()~ dumps a Python string into a JSON object.
+
+We are doing the opposite, using ~json.dumps()~.
+
+What we are going to do first is to delete the phone attribute within each people key. This is entirely possible because in Python, dictionary is a *mutable* data type.
+
+#+begin_src python
+for person in data["people"]:
+    del person['phone']
+
+print(data)
+#+end_src
+
+#+begin_src 
+{'people': [{'name': 'John Doe', 'emails': ['john.doe@john.com', 'john.doe@doe.com'], 'has_license': False}, {'name': 'Jane Doe', 'emails': None, 'has_license': True}]}
+#+end_src
+
+We can then dump this into a string
+#+BEGIN_SRC python :exports both :results output :session
+new_string = json.dumps(data)
+#+END_SRC
+
+We can also format it using the ~indent~ argument of the ~dumps~ method.
+#+begin_src python
+new_string = json.dumps(data, indent=2)
+print(new_string)
+#+end_src
+#+begin_src 
+{
+  "people": [
+    {
+      "name": "John Doe",
+      "emails": [
+        "john.doe@john.com",
+        "john.doe@doe.com"
+      ],
+      "has_license": false
+    },
+    {
+      "name": "Jane Doe",
+      "emails": null,
+      "has_license": true
+    }
+  ]
+}
+#+end_src
+
+The ~dumps()~ method also has an argument ~sort_keys~ that can be set to ~True~ or ~False~ to organize the keys alphabetically.
+

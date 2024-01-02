@@ -1,0 +1,100 @@
+#+TITLE:Japan
+#+DATE:
+#+SETUPFILE: https://akhsim.github.io/read-akhsiM-orgs/theme-readtheorg-akhsiM.setup
+
+* JR/ JR Pass
+
+[[./images/JR sign.jpg]]
+
+Japan Rail Pass
+
+** Must know & Coverage
+
+If we see a JR sign, most likely we can use the train.
+
+- Can only be used by foreign e.g purchased only online or via JR agents.
+  - We purchase the voucher, which is then to be exchanged to an actual pass
+  - Voucher has to be exchanged within three months of purchase.
+  - Exchange of voucher can be done at designated major JR stations across Japan, including Narita Airport.
+  - When exchange, passport is needed.
+  - When exchange to an actual pass, we do not need to start on the same date. We can *select any date* within a one month period as starting date. *Once pass is issued, starting date cannot be changed*.
+- One, two or three weeks.
+- Seat reservation can be made for *free*.
+- Cannot be shared, a JR Pass can only be used by the person whose name is printed on the board. Pass holders may be asked by railway staff to produce passport to confirm ownership of the pass.
+- *Validity*: is based on calendar days (midnights to midnights), rather than 24-hour period. Example: when starting to use a 7-day pass at noon on day 1, it will expire at midnight at end of day 7, rather than noon of day 8.
+>> Question: What if I'm on a train at a midnight that the Pass expires? It remains valid until end of journey, i.e until we leave the final station through ticket gate. We can transfer trains even after midnight as long as it's not to a shinkansen, ltd express or express train.
+
+
+JR pass only covers the JR network. JR is one of the many railway private companies operating rail systems in Japan. However it's the larest and covers the whole of Japan. It covers 23000km of rail over 4800 stations. JR Pass also covers *shinkansen, ltd express, express, rapid and local trains*.
+
+We can find out what's covered by JR by using the JR Map tool.
+
+*** How-to use
+
+JR Pass holders cannot use automatic ticket gates, but have to pass through manned gate and present rail pass to staff. On some occasions pass holders need to present passports.
+
+*Free Seat Reservation (optional)*: By presenting pass to any JR ticket across Japan. Cannot be made on board of trains or at ticket machines.
+
+On most trains, seat reservations are optional. On urban and local trains they are not even possible. However there is a small number of trains which carry *only reseverd seating*. These are:
+- Narita Express (Tokyo - Narita)
+- Hayabusa and Hayate trains along Tohoki/ Hokkaido Shinkansen
+- Komachi trains along Akita Shinkansen
+- Kagayaki trains along Hokuriku Shinkansen
+- Sunrise Seto/Izumo night train
+
+** *NOT* coverage
+
+Subways, Metros and non JR trains are not covered by JR pass. 
+
+Although JR pass is valid on local buses operated by JR, it's not on *highway buses*.
+
+If you cannot see JR sign, it's probably not covered.
+
+- Nozomi trains
+These are the fastest trains along Tokaido/ Sanyo Shinkansen. Not covered by JR pass. However, pass holders can use *Hikari* trains along the same line, which stop at a few mroe stops than Nozomi and are slightly slower and less frequent than Nozmi trains. *If boarded by mistake, need to pay in *full*.
+
+- Mizuho trains
+These are fastest along Sanyo/ Kyushu Shinkansen. However they are less frequent (6 rd trips per day). Pass holders can use Sakura trains along the same line. *If boarded by mistake, needs to pay in ful*.
+
+- Special compartments and berths
+Needs to pay *supplement fees*.
+
+- Trains requiring Liner Tickets
+These are targeted at suburban commuters. Foreign commuters are most likely not familar or use them.
+*Notes:* These are not to be confused with trains that have "Liner" in their names i.e Marine Liner, Seaside Liner and Ishilari Liner, which are all fully covered by JR pass.
+
+- Highway Buses
+Nope.
+
+** Making the most out of JR Pass
+
+It depends on the itinerary. However, it's likely to pay off if we are doing long distance traveling within a short period.
+
+As a rule of thumb, the 7-day pass cost about the same as regular Shinkansen tickets for a round trip between Tokyo and Kyoto. Less than that, don't bother.
+
+Does it cover? Ask: https://www.japan-guide.com/railpass/
+
+Urban transportation alone does *not* justify the cost of a JR Pass. There has to be long distance involved. In *Tokyo and Osaka*, i.e the two big cities, the pass is quite useful due to the Tokyo's Yamanote Line and Osaka's Loop Line. However in many other cities, i.e Kyoto, non-JR trains, subways and buses are more convenient and *not covered by JR Rail Pass*.
+
+
+
+
+** Resources
+
+| Description        | URL                                    | Notes         |
+|--------------------+----------------------------------------+---------------|
+| JR Map             | https://www.jrpass.com/map/            |               |
+| JR Fare Calculator | https://www.jrpass.com/farecalculator/ | If no JR pass |
+| Hypedia            | http://www.hyperdia.com/               |               |
+
+*** Maps
+
+- *Major train lines covered by JR Pass*
+
+[[./images/JR Pass - Major Trains.png]]
+
+- *Shinkansen*
+
+[[./images/Shinkansen.png]]
+
+

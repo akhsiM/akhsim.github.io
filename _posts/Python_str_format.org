@@ -1,0 +1,204 @@
+#+TITLE:Python ~str.format()~
+#+DATE: <2019-08-07 Wed>
+#+SETUPFILE: https://akhsim.github.io/read-akhsiM-orgs/theme-readtheorg-akhsiM.setup
+
+* Basic 
+Formatting strings allow us to display information in exactly the way we would like it to be .
+
+Without formatting:
+#+BEGIN_SRC python :exports both :results output :session
+person = {'name': 'Kenny', 'age': 26}
+
+sentence = 'My name is ' + person['name'] + ' and I am ' + str(person['age']) + ' years old.'
+print(sentence)
+#+END_SRC
+
+#+RESULTS:
+: My name is Kenny and I am 26 years old.
+
+Note how you have to concatenate a bunch of string.. It's harder to write and to read. We have to account for correct spaces, ~str(int)~..etc..
+
+With formatting: 
+#+BEGIN_SRC python :exports both :results output :session
+person = {'name': 'Kenny', 'age': 26}
+
+sentence = 'My name is {} and I am {} years old'.format(person['name'], person['age'])
+print(sentence)
+#+END_SRC
+
+#+RESULTS:
+: My name is Kenny and I am 26 years old
+
+With formatting, it's easier to write and easier to read. 
+** Formatting Format
+
+~{}~ is called a *placeholder*. A placeholder is replaced by the argument passed in the string method ~format().~ 
+  
+* Using placeholders with numbers
+ 
+#+BEGIN_SRC python :exports both :results output :session
+person = {'name': 'Kenny', 'age': 26}
+
+sentence = 'My name is {0} and I am {1} years old.'.format(person['name'], person['age'])
+print(sentence)
+#+END_SRC
+
+#+RESULTS:
+: My name is Kenny and I am 26 years old.
+
+Using numbered placeholders can be even more useful when you have string with repeated pattern.
+
+#+BEGIN_SRC python :exports both :results output :session
+text = 'Hello World!'
+tag = 'h1'
+
+sentence = '<{0}>{1}</{0}>'.format(tag,text)
+print(sentence)
+#+END_SRC
+
+#+RESULTS:
+: <h1>Hello World!</h1>
+
+* Accessing values from within placeholder
+
+#+BEGIN_SRC python :exports both :results output :session
+person = {'name': 'Kenny', 'age': 26}
+
+sentence = 'My name is {0[name]} and I am {0[age]} years old'.format(person)
+print(sentence)
+#+END_SRC
+
+#+RESULTS:
+: My name is Kenny and I am 26 years old
+
+Note in the above example, we only needed to pass one argument to the method ~format()~. However this argument was a dict that contains different keys and values.
+
+You can also perform the same action for list, except that you'd have to use the index in square bracket.
+* Accessing attribute in a class
+
+#+BEGIN_SRC python :exports both :results output :session
+class Person():
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+p1 = Person('Kenny',26)
+
+sentence = 'My name is {0.name} and I am {0.age} years old.'.format(p1)
+print(sentence)
+#+END_SRC
+
+#+RESULTS:
+: My name is Kenny and I am 26 years old.
+
+* Using key word arguments with format() 
+
+#+BEGIN_SRC python :exports both :results output :session
+sentence = 'My name is {name} and I am {age} years old.'.format(name = 'Kenny', age = 26)
+print(sentence)
+#+END_SRC
+
+#+RESULTS:
+: My name is Kenny and I am 26 years old.
+
+Combining with the use of unpacking a  ~dict~, this can be used very nicely.
+/(a dict can be unpckaed by ~**~)/
+
+#+BEGIN_SRC python :exports both :results output :session
+roku = {'name':'Roku', 'breed':'Shiba Inu'}
+
+sentence = 'Hello My name is {name} and I am a {breed}.'.format(**roku)  ## dict roku unpacked
+print(sentence) 
+#+END_SRC
+
+#+RESULTS:
+: Hello My name is Roku and I am a Shiba Inu.
+* Working with numbers - zeropadding
+
+#+BEGIN_SRC python :exports both :results output :session
+for i in range(1,11):
+    sentence = 'The current value is {}.'.format(i)
+    print(sentence)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+The current value is 1.
+The current value is 2.
+The current value is 3.
+The current value is 4.
+The current value is 5.
+The current value is 6.
+The current value is 7.
+The current value is 8.
+The current value is 9.
+The current value is 10.
+#+end_example
+
+zero padding
+
+#+BEGIN_SRC python :exports both :results output :session
+for i in range(1,11):
+    sentence = 'The current value is {:03}.'.format(i)
+    print(sentence)
+
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+The current value is 001.
+The current value is 002.
+The current value is 003.
+The current value is 004.
+The current value is 005.
+The current value is 006.
+The current value is 007.
+The current value is 008.
+The current value is 009.
+The current value is 010.
+#+end_example
+* Working with numbers - decimal places & comma separator
+
+** decimal places
+ #+BEGIN_SRC python :exports both :results output :session
+pi = 3.14159265
+
+sentence = 'Pi is equal to {:.3f}.'.format(pi)
+print(sentence)
+ #+END_SRC
+
+ #+RESULTS:
+ : Pi is equal to 3.142.
+ 
+** comma separator
+#+BEGIN_SRC python :exports both :results output :session
+  sentence = '1MB is equal to {:,} bytes.'.format(1000**2)
+  print(sentence)
+#+END_SRC
+
+#+RESULTS:
+: 1MB is equal to 1,000,000 bytes.
+** combination of decimal places and csv
+#+BEGIN_SRC python :exports both :results output :session
+  sentence = '1MB is equal to {:,.2f} bytes.'.format(1000**2)
+  print(sentence)
+#+END_SRC
+
+#+RESULTS:
+: 1MB is equal to 1,000,000.00 bytes.
+* Working with Dates
+#+BEGIN_SRC python :exports both :results output :session
+import datetime as dt
+my_date = dt.datetime(1900, 1, 1, 12, 34, 56)
+print('Default format for datetime object:')
+print(my_date)
+print()
+print('Custom format:')
+print('{:%d %B %Y}'.format( my_date))
+#+END_SRC
+
+#+RESULTS:
+: Default format for datetime object:
+: 1900-01-01 12:34:56
+: Custom format:
+: 01 January 1900

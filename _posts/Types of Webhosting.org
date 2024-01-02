@@ -1,0 +1,51 @@
+#+TITLE:Different options of Web Hosting Services
+#+DATE:<2019-10-23 Wed>
+#+SETUPFILE: https://akhsim.github.io/read-akhsiM-orgs/theme-readtheorg-akhsiM.setup
+
+* Shared Hosting
+
+[[./images/shared-hosting.png]]
+
+Cheapest, quickest and easiest. This is the best for entry-level website hosting.
+
+Out websites will be stored on the same server as *multiple other websites*.
+
+However it is *slow*. We are sharing our service with other people. Depending on our neighbors, our website performance may be impacted negatively by what they do with their sites. Conversely, we may not be able to do all the things we would without affecting them.
+
+Shared hosting plans are ideal for website owners that do not receive large amount of traffic.
+
+* Reseller Hosting
+
+It's pretty much shared hosting but we can create unlimited websites.
+
+We can also sell hostings.
+
+* Virtual Private Server
+
+With this we are getting dedicated resources that are *our own*. We have more control. We also have root access.
+
+VPS is the ultimate middleground between a shared server and a dedicated server. It's ideal for the people that need a bit of control but don't need a dedicated server.
+
+With VPS, although websites share physical server with the others, they have their own dedicated space. It's basically a bunch of websites running on seperate *virtual machines* on the same computer, each having the same pool of resources as the others.
+
+The downside is that it is not scalable and it costs more than reseller and shared hosting.
+
+* Dedicated
+
+You actually get physical dedicated server and resources. Dedicated hosting gives owners the most control over the server that their website is stored on. Because the server is *exclusively* rented by you and your website is the only one stored on it, it means that you have full root access and can control everything from scratch.
+
+It is quite expensive and requires a lot of IT skills.
+
+* Cloud Hosting
+
+Very popular these days. With cloud hosting we *pay for our usage*.
+
+Our web is on the cloud. It's faster, scalable. Cloud-based hosting means the resources that are being used are spread across several servers which means that it's scalable. Our site can grow over times, utilizing as much resource as it requires.
+
+The downside is that it costs a bit and we don't have control.
+
+* Managed WordPress
+
+Database oriented web hosting that is optimized for WordPress platform.
+
+It costs and there's not much control.

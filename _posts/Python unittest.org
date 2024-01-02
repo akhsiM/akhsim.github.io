@@ -1,0 +1,972 @@
+#+TITLE:Python Unit Testing with unittest
+#+DATE: <2020-10-21 Wed>
+#+SETUPFILE: https://akhsim.github.io/read-akhsiM-orgs/theme-readtheorg-akhsiM.setup
+
+* Testing for simple calculation
+
+Suppose we have the following files with 4 functions to be tested:
+
+*calc.py*
+#+begin_src python
+def add(x, y):
+    '''Addition Function'''
+    return x + y
+
+def substract(x, y):
+    '''Substraction Function'''
+    return x - y
+
+def multiply(x, y):
+    '''Multiplication Function'''
+    return x * y
+
+def divide(x, y):
+    '''Division Function'''
+    if y == 0:
+        raise ValueError('Cannot divide by zero!')
+    return x / y
+#+end_src
+
+** Basics
+
+We would need to create a test file:
+
+*test_calc.py*
+#+begin_src python
+import unittest
+import calc
+
+class TestCalc(unittest.TestCase):
+
+    def test_add(self):
+        result = calc.add(10, 5)
+        self.assertEqual(result, 15)
+#+end_src
+
+
+Test files should start with ~test_~. This is the naming convention.
+
+First we need to create a Test Class that inherits from ~unittest.TestCase~. This allows us to access to a lot of different testing functionalities that come with that class.
+
+Within our Test Class, the testing methods also need to be named ~test_*~. This is another naming convention that we need to follow in order to use ~unittest~. When we run the tests later on, ~unittest~ will *only run the methods that starts with* ~test_~
+
+With the above ~test_calc.py~ module, in the same directory with ~calc.py~, we can run the test file like so:
+#+begin_src sh
+python -m unittest test_calc.py
+#+end_src
+#+begin_src 
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+#+end_src
+
+** Running test module directly
+
+Instead of running the test module with ~python -m unittest~, we can just run the test module directly if we write it like so:
+
+#+begin_src python
+import unittest
+import calc
+
+class TestCalc(unittest.TestCase):
+
+    def test_add(self):
+        result = calc.add(10, 5)
+        self.assertEqual(result, 15)
+
+if __name__ == '__main__':
+    unittest.main()
+#+end_src
+
+#+begin_src sh
+python test_calc.py
+#+end_src
+#+begin_src 
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+#+end_src
+
+** Failed Test
+
+If we edit the code like so, our test would fail:
+
+*test_calc.py*
+#+begin_src python
+import unittest
+import calc
+
+class TestCalc(unittest.TestCase):
+
+    def test_add(self):
+        result = calc.add(10, 5)
+        self.assertEqual(result, 14)
+
+if __name__ == '__main__':
+    unittest.main()
+#+end_src
+
+#+begin_src 
+> python test_calc.py
+F
+======================================================================
+FAIL: test_add (__main__.TestCalc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_calc.py", line 8, in test_add
+    self.assertEqual(result, 14)
+AssertionError: 15 != 14
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)
+#+end_src
+
+** Multiple tests in one test method
+
+Generally not only that we want to test more than one case, we'd also want to test for edge cases. In our case, for the addition function, that would be the inclusion of negative numbers:
+
+*test_calc.py*
+#+begin_src python
+import unittest
+import calc
+
+class TestCalc(unittest.TestCase):
+
+    def test_add(self):
+        self.assertEqual(calc.add(10, 5), 15)
+        self.assertEqual(calc.add(-1, 1), 0)
+        self.assertEqual(calc.add(-1, -1), -2)
+
+if __name__ == '__main__':
+    unittest.main()
+#+end_src
+
+#+begin_src 
+> python test_calc.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+#+end_src
+
+When we run the module however, only 1 test was run even though we wrote three different assert statements. This is normaly behaviour. Even though the ~unittest~ result only shows that one test was run, *three* different checks were performed.
+
+** Testing for different functions
+
+We can then move on to test our other calc functions:
+
+*test_calc.py*
+#+begin_src python
+import unittest
+import calc
+
+class TestCalc(unittest.TestCase):
+
+    def test_add(self):
+        self.assertEqual(calc.add(10, 5), 15)
+        self.assertEqual(calc.add(-1, 1), 0)
+        self.assertEqual(calc.add(-1, -1), -2)
+
+    def test_substract(self):
+        self.assertEqual(calc.substract(10, 5), 5)
+        self.assertEqual(calc.substract(-1, 1), -2)
+        self.assertEqual(calc.substract(-1, -1), 0)
+
+    def test_multiply(self):
+        self.assertEqual(calc.multiply(10, 5), 50)
+        self.assertEqual(calc.multiply(-1, 1), -1)
+        self.assertEqual(calc.multiply(-1, -1), 1)
+
+    def test_divide(self):
+        self.assertEqual(calc.divide(10, 5), 2)
+        self.assertEqual(calc.divide(-1, 1), -1)
+        self.assertEqual(calc.divide(-1, -1), 1)
+
+if __name__ == '__main__':
+    unittest.main()
+#+end_src
+
+#+begin_src 
+> python test_calc.py
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+#+end_src
+
+Supposedly, we made a typo in our ~multiply~ function, instead of:
+#+begin_src python
+def multiply(x, y):
+    '''Multiplication Function'''
+    return x * y
+#+end_src
+
+.. we wrote:
+#+begin_src python
+def multiply(x, y):
+    '''Multiplication Function'''
+    return x ** y
+#+end_src
+
+The test module would catch that. As per below, the line ~..F.~ indicates that one out of four of our tests failed. We could also see where the ~AssertError~ is.
+#+begin_src 
+> python test_calc.py
+..F.
+======================================================================
+FAIL: test_multiply (__main__.TestCalc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_calc.py", line 17, in test_multiply
+    self.assertEqual(calc.multiply(10, 5), 50)
+AssertionError: 100000 != 50
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+FAILED (failures=1)
+#+end_src
+** Testing for edge case - Division
+
+Supposedly, we had written our ~divide()~ function like the below. With this code, the function would perform a floor division instead of a normal division.
+
+#+begin_src python
+def divide(x, y):
+    '''Division Function'''
+    if y == 0:
+        raise ValueError('Cannot divide by zero!')
+    return x // y
+#+end_src
+
+Our current test would not distinguish between the two type of divisions:
+#+begin_src python
+    def test_divide(self):
+        self.assertEqual(calc.divide(10, 5), 2)
+        self.assertEqual(calc.divide(-1, 1), -1)
+        self.assertEqual(calc.divide(-1, -1), 1)
+#+end_src
+
+However, if this has broken our program somewhere down the track, that would be a good time to add new test cases to the unit test to cover for this.
+
+If we had included this test case in our test module, the testing would have failed:
+#+begin_src python
+    def test_divide(self):
+        self.assertEqual(calc.divide(10, 5), 2)
+        self.assertEqual(calc.divide(-1, 1), -1)
+        self.assertEqual(calc.divide(-1, -1), 1)
+        self.assertEqual(calc.divide(5,2), 2.5)
+#+end_src
+
+#+begin_src 
+> python test_calc.py
+.F..
+======================================================================
+FAIL: test_divide (__main__.TestCalc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_calc.py", line 25, in test_divide
+    self.assertEqual(calc.divide(5,2), 2.5)
+AssertionError: 2 != 2.5
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+FAILED (failures=1)
+
+#+end_src
+** Testing for Exception
+
+We can also test that our expectation of the ~divide()~ function is working as expected. 
+#+begin_src python
+def divide(x, y):
+    '''Division Function'''
+    if y == 0:
+        raise ValueError('Cannot divide by zero!')
+    return x / y
+#+end_src
+
+With the above code, if the second argument equals 0, Python should raise an Exception.
+
+There are different ways that we can write the test for this, the first is:
+#+begin_src python
+import unittest
+import calc
+
+class TestCalc(unittest.TestCase):
+
+...
+
+    def test_divide(self):
+        self.assertEqual(calc.divide(10, 5), 2)
+        self.assertEqual(calc.divide(-1, 1), -1)
+        self.assertEqual(calc.divide(-1, -1), 1)
+        self.assertEqual(calc.divide(5,2), 2.5)
+
+        self.assertRaises(ValueError, calc.divide, 10, 0)
+
+if __name__ == '__main__':
+    unittest.main()
+#+end_src
+
+The Exception that we expect is passed to ~assertRaises()~ as the first argument. The second argument is the function that we are testing, however we are not invoking it by *not* including the ~()~ pair. Instead, the arguments that would otherwise be passed to the function being tested are passed in the later positions, next to the function it self.
+
+#+begin_src 
+> python test_calc.py
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+#+end_src
+ 
+If we change the second argument to something not ~0~, the test would fail, because the function would throw Exception.
+
+#+begin_src python
+self.assertRaises(ValueError, calc.divide, 10, 0
+#+end_src
+
+#+begin_src 
+> python test_calc.py
+.F..
+======================================================================
+FAIL: test_divide (__main__.TestCalc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_calc.py", line 27, in test_divide
+    self.assertRaises(ValueError, calc.divide, 10, 2)
+AssertionError: ValueError not raised by divide
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+FAILED (failures=1)
+#+end_src
+
+** Testing for Exception using *Context Manager*
+
+Using a Context Manager, we will be able to call our functions and handle exceptions normally without using the special syntax like above.
+
+Instead of:
+#+begin_src python
+...
+self.assertRaises(ValueError, calc.divide, 10, 0)
+...
+#+end_src
+
+We can instead fo:
+#+begin_src python
+with self.assertRaises(ValueError):
+    calc.divide(10, 0)
+#+end_src
+* Slightly more complicated testing: Employee
+
+** Basics
+*employee.py*
+  #+begin_src python
+class Employee:
+
+    raise_amt = 1.05
+
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = pay
+
+    @property
+    def email(self):
+        return '{}.{}@email.com'.format(self.first, self.last)
+
+    @property
+    def fullname(self):
+        return '{} {}'.format(self.first, self.last)
+
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amt)
+  #+end_src
+
+Our simple test module *test_employee* would look like so:
+
+#+begin_src python
+import unittest
+from employee import Employee
+
+class TestEmployee(unittest.TestCase):
+
+    def test_email(self):
+        '''Testing for email getter and setter.'''
+
+        emp_1 = Employee('Kenny', 'Nguyen', 50000)
+        emp_2 = Employee('Corey', 'Schafer', 60000)
+
+        self.assertEqual(emp_1.email, 'Kenny.Nguyen@email.com')
+        self.assertEqual(emp_2.email, 'Corey.Schafer@email.com')
+
+        emp_1.first = 'John'
+        emp_2.first = 'Jane'
+
+        self.assertEqual(emp_1.email, 'John.Nguyen@email.com')
+        self.assertEqual(emp_2.email, 'Jane.Schafer@email.com')
+
+    def test_fullname(self):
+        '''Testing for fullname getter and setter.'''
+
+        emp_1 = Employee('Kenny', 'Nguyen', 50000)
+        emp_2 = Employee('Corey', 'Schafer', 60000)
+
+        self.assertEqual(emp_1.fullname, 'Kenny Nguyen')
+        self.assertEqual(emp_2.fullname, 'Corey Schafer')
+
+        emp_1.first = 'John'
+        emp_2.first = 'Jane'
+
+        self.assertEqual(emp_1.fullname, 'John Nguyen')
+        self.assertEqual(emp_2.fullname, 'Jane Schafer')
+
+    def test_apply_raise(self):
+        '''Testing for raise apply function.'''
+        emp_1 = Employee('Kenny', 'Nguyen', 50000)
+        emp_2 = Employee('Corey', 'Schafer', 60000)
+
+        emp_1.apply_raise()
+        emp_2.apply_raise()
+        
+        self.assertEqual(emp_1.pay, 52500)
+        self.assertEqual(emp_2.pay, 63000)
+if __name__ == '__main__':
+    unittest.main()
+#+end_src
+
+#+begin_src 
+> python test_employee.py
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+#+end_src
+
+** ~setUp()~ and ~tearDown()~ to get reusable objects
+
+In the above code, we had to repeat the two lines to initialise the ~emp_1~ and ~emp_2~ objects multiple times. This is inefficient. There is a way for us to create these two once, and reuse them for multiple test cases. We do this by using the ~setUp()~ and ~tearDown()~ methods.
+
+The ~setUp()~ method runs before every single test. The ~tearDown()~ method runs after every single test.
+
+In our example, we want to create two ~Employee~ objects for our tests. For this, we'd put them in ~setUp()~. We also want to set them as *instance attribute* so we can access them in our test methods.
+
+#+begin_src python
+import unittest
+from employee import Employee
+
+class TestEmployee(unittest.TestCase):
+
+    def setUp(self):
+        self.emp_1 = Employee('Kenny', 'Nguyen', 50000)
+        self.emp_2 = Employee('Corey', 'Schafer', 60000)
+
+    def tearDown(self):
+        pass 
+
+    def test_email(self):
+        '''Testing for email getter and setter.'''
+
+        self.assertEqual(self.emp_1.email, 'Kenny.Nguyen@email.com')
+        self.assertEqual(self.emp_2.email, 'Corey.Schafer@email.com')
+
+        self.emp_1.first = 'John'
+        self.emp_2.first = 'Jane'
+
+        self.assertEqual(self.emp_1.email, 'John.Nguyen@email.com')
+        self.assertEqual(self.emp_2.email, 'Jane.Schafer@email.com')
+
+    def test_fullname(self):
+        '''Testing for fullname getter and setter.'''
+
+        self.assertEqual(self.emp_1.fullname, 'Kenny Nguyen')
+        self.assertEqual(self.emp_2.fullname, 'Corey Schafer')
+
+        self.emp_1.first = 'John'
+        self.emp_2.first = 'Jane'
+
+        self.assertEqual(self.emp_1.fullname, 'John Nguyen')
+        self.assertEqual(self.emp_2.fullname, 'Jane Schafer')
+
+    def test_apply_raise(self):
+        '''Testing for raise apply function.'''
+
+        self.emp_1.apply_raise()
+        self.emp_2.apply_raise()
+        
+        self.assertEqual(self.emp_1.pay, 52500)
+        self.assertEqual(self.emp_2.pay, 63000)
+        
+if __name__ == '__main__':
+    unittest.main()
+#+end_src
+
+#+begin_src 
+> python test_employee.py
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+#+end_src
+
+We can also observe the behaviours of these two functions by including some ~print()~ statement:
+#+begin_src python
+import unittest
+from employee import Employee
+
+class TestEmployee(unittest.TestCase):
+
+    def setUp(self):
+        print('setUp')
+        self.emp_1 = Employee('Kenny', 'Nguyen', 50000)
+        self.emp_2 = Employee('Corey', 'Schafer', 60000)
+
+    def tearDown(self):
+        print('tearDown\n')
+        pass 
+
+    def test_email(self):
+        '''Testing for email getter and setter.'''
+
+        print('test_email')
+        self.assertEqual(self.emp_1.email, 'Kenny.Nguyen@email.com')
+        self.assertEqual(self.emp_2.email, 'Corey.Schafer@email.com')
+
+        self.emp_1.first = 'John'
+        self.emp_2.first = 'Jane'
+
+        self.assertEqual(self.emp_1.email, 'John.Nguyen@email.com')
+        self.assertEqual(self.emp_2.email, 'Jane.Schafer@email.com')
+
+    def test_fullname(self):
+        '''Testing for fullname getter and setter.'''
+
+        print('test_fullname')
+        self.assertEqual(self.emp_1.fullname, 'Kenny Nguyen')
+        self.assertEqual(self.emp_2.fullname, 'Corey Schafer')
+
+        self.emp_1.first = 'John'
+        self.emp_2.first = 'Jane'
+
+        self.assertEqual(self.emp_1.fullname, 'John Nguyen')
+        self.assertEqual(self.emp_2.fullname, 'Jane Schafer')
+
+    def test_apply_raise(self):
+        '''Testing for raise apply function.'''
+        
+        print('test_fullname')
+        self.emp_1.apply_raise()
+        self.emp_2.apply_raise()
+        
+        self.assertEqual(self.emp_1.pay, 52500)
+        self.assertEqual(self.emp_2.pay, 63000)
+
+if __name__ == '__main__':
+    unittest.main()
+#+end_src
+
+#+begin_src 
+> python test_employee.py
+setUp
+test_fullname
+tearDown
+
+.setUp
+test_email
+tearDown
+
+.setUp
+test_fullname
+tearDown
+
+.
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+#+end_src
+
+One thing we notice is that the tests are *not run in order*. Therefore, all our test cases should be isolate from one another and that we should not expect test cases are run top-down.
+
+** Use case for ~tearDown()~
+
+The ~tearDown()~ method can be useful for some scenarios. 
+
+Suppose we have a program that downloads and stores certain files into a directory or a test database. In our ~tearDown()~ method, we could write code to delete these files from the test directory or database to have a "clean slate".
+
+** Running ~setUp()~ and ~tearDown()~ at the very beginning, and very ending of test file
+
+It is sometimes use fule to run some setup function at *the very beginning* of our test file before anything, as well as *the very end*, after everything. This is different to the ~setUp()~ and ~tearDown()~ which runs before and after everything.
+
+This can be done using the native class methods:
+
+#+begin_src python
+import unittest
+from employee import Employee
+
+class TestEmployee(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        print('setupClass')
+    
+    @classmethod
+    def tearDownClass(cls):
+        print('teardownClass')
+
+    def setUp(self):
+        print('setUp')
+        self.emp_1 = Employee('Kenny', 'Nguyen', 50000)
+        self.emp_2 = Employee('Corey', 'Schafer', 60000)
+
+    def tearDown(self):
+        print('tearDown\n')
+        pass 
+
+    def test_email(self):
+        '''Testing for email getter and setter.'''
+
+        print('test_email')
+        self.assertEqual(self.emp_1.email, 'Kenny.Nguyen@email.com')
+        self.assertEqual(self.emp_2.email, 'Corey.Schafer@email.com')
+
+        self.emp_1.first = 'John'
+        self.emp_2.first = 'Jane'
+
+        self.assertEqual(self.emp_1.email, 'John.Nguyen@email.com')
+        self.assertEqual(self.emp_2.email, 'Jane.Schafer@email.com')
+
+    def test_fullname(self):
+        '''Testing for fullname getter and setter.'''
+
+        print('test_fullname')
+        self.assertEqual(self.emp_1.fullname, 'Kenny Nguyen')
+        self.assertEqual(self.emp_2.fullname, 'Corey Schafer')
+
+        self.emp_1.first = 'John'
+        self.emp_2.first = 'Jane'
+
+        self.assertEqual(self.emp_1.fullname, 'John Nguyen')
+        self.assertEqual(self.emp_2.fullname, 'Jane Schafer')
+
+    def test_apply_raise(self):
+        '''Testing for raise apply function.'''
+
+        self.emp_1.apply_raise()
+        self.emp_2.apply_raise()
+        
+        self.assertEqual(self.emp_1.pay, 52500)
+        self.assertEqual(self.emp_2.pay, 63000)
+
+if __name__ == '__main__':
+    unittest.main()
+#+end_src
+
+We can then see the order of execution:
+#+begin_src 
+                                                  
+> python test_employee.py
+setupClass
+setUp
+tearDown
+
+.setUp
+test_email
+tearDown
+
+.setUp
+test_fullname
+tearDown
+
+.teardownClass
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+#+end_src
+
+The ~setUpClass~ runs before any test and ~tearDownClass~ runs after all tests. These are useful for things that we want to set up before our test but might be too costly to do for every single test.
+
+* Testing for things that we have no control over with *Mocking*
+
+In a lot of scenarios we deal with things that we don't have complete control over, for example pulling some data from a third party website.
+
+If the third party website is down, our test would fail as well. 
+
+However this is *not* what we want, as we would only want our tests to fail if our code actually fails. There is nothing that we can do to address a third party website going down.
+
+This is where *Mocking* comes in.
+
+Suppose our ~Employee~ class has a new method that can be used to look at an employee's schedule. This method goes to a company website to pull down an employee's chedule for a given month
+
+#+begin_src python
+import requests
+
+class Employee:
+
+    raise_amt = 1.05
+
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = pay
+
+    @property
+    def email(self):
+        return '{}.{}@email.com'.format(self.first, self.last)
+
+    @property
+    def fullname(self):
+        return '{} {}'.format(self.first, self.last)
+
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amt)
+
+    def monthly_schedule(self, month):
+        response = requests.get(f'http://company.com/{self.last}/{month}')
+        if response.ok:
+            return response.text
+        else:
+            return 'Bad Response!'
+#+end_src
+
+For this, the data that we get from the website is something that we would want to Mock, because we don't want our test to depend on the website being online. We only care that the get method was called with the correct URL and that our code would behave correctly.
+
+First, we need to:
+#+begin_src python
+from unittest.mock import patch
+#+end_src
+
+There are two ways that we can use ~patch~. We can use it either as a decorator or as a context manager. It will allow us to mock an object during a test. That object will be automatically stored after the test is run.
+
+#+begin_src python
+import unittest
+from unittest.mock import patch
+from employee import Employee
+
+class TestEmployee(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        print('setupClass')
+    
+    @classmethod
+    def tearDownClass(cls):
+        print('teardownClass')
+
+    def setUp(self):
+        print('setUp')
+        self.emp_1 = Employee('Kenny', 'Nguyen', 50000)
+        self.emp_2 = Employee('Corey', 'Schafer', 60000)
+
+    def tearDown(self):
+        print('tearDown\n')
+        pass 
+
+    def test_email(self):
+        '''Testing for email getter and setter.'''
+
+        print('test_email')
+        self.assertEqual(self.emp_1.email, 'Kenny.Nguyen@email.com')
+        self.assertEqual(self.emp_2.email, 'Corey.Schafer@email.com')
+
+        self.emp_1.first = 'John'
+        self.emp_2.first = 'Jane'
+
+        self.assertEqual(self.emp_1.email, 'John.Nguyen@email.com')
+        self.assertEqual(self.emp_2.email, 'Jane.Schafer@email.com')
+
+    def test_fullname(self):
+        '''Testing for fullname getter and setter.'''
+
+        print('test_fullname')
+        self.assertEqual(self.emp_1.fullname, 'Kenny Nguyen')
+        self.assertEqual(self.emp_2.fullname, 'Corey Schafer')
+
+        self.emp_1.first = 'John'
+        self.emp_2.first = 'Jane'
+
+        self.assertEqual(self.emp_1.fullname, 'John Nguyen')
+        self.assertEqual(self.emp_2.fullname, 'Jane Schafer')
+
+    def test_apply_raise(self):
+        '''Testing for raise apply function.'''
+
+        self.emp_1.apply_raise()
+        self.emp_2.apply_raise()
+        
+        self.assertEqual(self.emp_1.pay, 52500)
+        self.assertEqual(self.emp_2.pay, 63000)
+
+    def test_monthly_schedule(self):
+
+        with patch('employee.requests.get') as mocked_get:
+            mocked_get.return_value.ok = True
+            mocked_get.return_value.text = 'Success'
+
+            schedule = self.emp_1.monthly_schedule('May')
+            mocked_get.assert_called_with(f'http://company.com/Nguyen/May')
+            self.assertEqual(schedule, 'Success')
+
+
+
+if __name__ == '__main__':
+    unittest.main()
+#+end_src
+
+*Note* that we didn't import the ~requests~ library into our test module but instead choose to mock the object where it's actually used, which is in the ~employee.py~ module. What happens here is that the ~requests.get()~ call within our ~employee.py~ file will be replaced with the mock variable ~mocked_get~. 
+
+Then, instead of going out to the website we can just assign the return value to imitate  a successful call. With these fake, or mock values, we can then test the behaviour of our code.
+
+One of the good thing about the mock object is that they actually record when they are call and with what value. Therefore we can test if they were called with the right URL, with the correct parameter that is passed onto the URL. For our example, we want to make sure that the ~lastname~ of ~emp_1~ was correctly passed to the URL.
+
+#+begin_src 
+> python test_employee.py
+setupClass
+setUp
+tearDown
+
+.setUp
+test_email
+tearDown
+
+.setUp
+test_fullname
+tearDown
+
+.setUp
+tearDown
+
+.teardownClass
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+OK
+#+end_src
+
+** Final code - include a failed response
+
+We can also test a failed response:
+
+#+begin_src python
+import unittest
+from unittest.mock import patch
+from employee import Employee
+
+class TestEmployee(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        print('setupClass')
+    
+    @classmethod
+    def tearDownClass(cls):
+        print('teardownClass')
+
+    def setUp(self):
+        print('setUp')
+        self.emp_1 = Employee('Kenny', 'Nguyen', 50000)
+        self.emp_2 = Employee('Corey', 'Schafer', 60000)
+
+    def tearDown(self):
+        print('tearDown\n')
+        pass 
+
+    def test_email(self):
+        '''Testing for email getter and setter.'''
+
+        print('test_email')
+        self.assertEqual(self.emp_1.email, 'Kenny.Nguyen@email.com')
+        self.assertEqual(self.emp_2.email, 'Corey.Schafer@email.com')
+
+        self.emp_1.first = 'John'
+        self.emp_2.first = 'Jane'
+
+        self.assertEqual(self.emp_1.email, 'John.Nguyen@email.com')
+        self.assertEqual(self.emp_2.email, 'Jane.Schafer@email.com')
+
+    def test_fullname(self):
+        '''Testing for fullname getter and setter.'''
+
+        print('test_fullname')
+        self.assertEqual(self.emp_1.fullname, 'Kenny Nguyen')
+        self.assertEqual(self.emp_2.fullname, 'Corey Schafer')
+
+        self.emp_1.first = 'John'
+        self.emp_2.first = 'Jane'
+
+        self.assertEqual(self.emp_1.fullname, 'John Nguyen')
+        self.assertEqual(self.emp_2.fullname, 'Jane Schafer')
+
+    def test_apply_raise(self):
+        '''Testing for raise apply function.'''
+
+        self.emp_1.apply_raise()
+        self.emp_2.apply_raise()
+        
+        self.assertEqual(self.emp_1.pay, 52500)
+        self.assertEqual(self.emp_2.pay, 63000)
+
+    def test_monthly_schedule(self):
+
+        with patch('employee.requests.get') as mocked_get:
+            mocked_get.return_value.ok = True
+            mocked_get.return_value.text = 'Success'
+
+            schedule = self.emp_1.monthly_schedule('May')
+            mocked_get.assert_called_with(f'http://company.com/Nguyen/May')
+            self.assertEqual(schedule, 'Success')
+        
+        with patch('employee.requests.get') as mocked_get:
+            mocked_get.return_value.ok = False
+            mocked_get.return_value.text = 'Bad Response!'
+
+            schedule = self.emp_2.monthly_schedule('June')
+            mocked_get.assert_called_with(f'http://company.com/Schafer/June')
+            self.assertEqual(schedule, 'Bad Response!')
+
+if __name__ == '__main__':
+    unittest.main()
+#+end_src
+
+#+begin_src 
+> python test_employee.py
+setupClass
+setUp
+tearDown
+
+.setUp
+test_email
+tearDown
+
+.setUp
+test_fullname
+tearDown
+
+.setUp
+tearDown
+
+.teardownClass
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+OK
+#+end_src
+* Best Practices
+
+- Tests should be isolate and can run independently.
+- In *Test-Driven Development*, we write the tests before the code. This practice can be very useful.
+

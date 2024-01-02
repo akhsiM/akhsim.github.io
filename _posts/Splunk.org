@@ -1,0 +1,650 @@
+#+TITLE:Splunk 7.x Fundamentals
+#+DATE:
+#+SETUPFILE: https://akhsim.github.io/read-akhsiM-orgs/theme-readtheorg-akhsiM.setup
+
+
+* Machine Data
+
+Machine data is *everywhere*, constantly flowing everywhere from servers to devices,..etc.. This machine data can be in many different formats, making it difficult to format and see. This data however can be very insightful.
+
+Machine data can be used for *event monitoring*, and even *alert* and *notification* for specific events.
+
+This is where Splunk comes in. Splunk can take any data and use indexing to allow us to extract insights i.e security, user behaviour, hardward failure, sales ..etc.
+
+* What is Splunk
+
+** General
+ There are 5 main functions of Splunk.
+
+*** Index Data
+
+ This is the heart of Splunk. It collects data from virtually any source.
+
+ It's like a factory and data is raw material.
+
+ Index decides how data can be processed and extracted. Data is broken and normalised into single events. After this we can use data for statistics and etc..
+
+*** Search & investigate
+
+*** Add Knowledge
+*** Monitor & Alert
+
+ This is real-time monitoring to allow us to proactively monitor and identify issues and impacts before the clients are affected.
+
+*** Report & Analyze
+
+ Report & Analyzation via dashboard. This allows us to look at data for meaningful insight.
+
+** Under the hood
+
+Splunk has three main processing components. Although Splunk has more components, these three are the basic building blocks.
+
+*** Indexer
+
+Indexer processes incoming machine data, storing the results of indexes as *events*. This enables fast search and analysis.
+
+This data is then organized into different directories that corresponds to different *timeframe*. These files are organized *by age*. These events are then retrievable by using *timeframe*.
+
+*** Search Heads
+
+Search heads handle search requests from users and distribute request to indexer, which perform the actual search on the data. After retrieving the data, it is finetuned before returning to user.
+
+It is used in various tools e.g report, dashboard..etc..
+
+*** Forwarder
+
+Forwarders are splunk enterprise instances. It consumes data and forward it to the indexers for indexing. They require *minimal* resources and *resides on the originating machine*. 
+
+As an example, if we have a web server that we want to monitor, we'd have the forwarded installed on that server.
+
+In most Splunk deployments, forwarders serve as the primary way data is supplied for indexing.
+
+** Deploying and Scaling
+
+Splunk can be deployed and various ways. It can also be scaled from a single instance to a full distributed infrastructure.
+
+In a single instance deployment, one single instance of Splunk Enterprise handles all functions of Splunk including:
+- Input
+- Parsing
+- Indexing
+- Searching
+
+This is perfect for POC, personal use, learning and small department-sized environment.
+
+In a distributed environment, we'd need to divide the functions into multiple instances of Splunk.
+
+Search Heads and Indexers can be clustered together.
+
+* Installing Splunk
+
+** Linux
+
+Installation can be done using .deb file, then
+
+- Start splunk
+#+begin_src bash
+cd /opt/splunk/bin
+sudo ./splunk start --accept-license
+#+end_src
+
+The Splunk web-interface was is at ~http://hostname:8000/
+
+** Windows
+
+On Windows we have the options of installing the GUI or CLI interface of Splunk Enterprise.
+
+** Splunk Cloud
+
+This is a machine data platform offered by Splunk as a subscription service.
+
+* Apps and Roles
+
+After logging into Splunk, we are redirected to the Apps Homepage. The apps we see are defined by the user with admin role.
+
+Roles determine what a user can see, do and interact with.
+
+There are three roles:
+*- Admin role*
+Can install app, digest data, create knowledge object for all users.
+*- Power role*
+Create and share knowledge object for users of an app and realtime searches.
+*- User role*
+Can only see their own knowledge object and those that's been shared with them.
+
+* Getting Data in
+
+Before we start searching and analysing our data, we need to add it to our index.
+
+The addition of data to index is done by the administrators. Splunk data ingestion can be broken down into three phases:
+1. Input phase
+2. Parsing phase
+3. Indexing Phase
+
+There are many ways to get our data into Splunk Enterprise.
+
+- Upload allows local Upload. Data is only indexed *once*. It's good for data that's only uploaded once and never gets updated.
+- Monitor options allow us to monitor events via multiple channels.
+- *Forward* option allow us to receive data from external forwarders. These are generally installed on *external* machine.
+
+When data source is indexed, Splunk assigns *metadata values* to the entire source.
+
+** Source Type
+
+After loading the file, we are presented with a window that we can use to select the *Source Type* for our data. If Splunk regconizes our data type it will set the data source with a pre-trained Source Type.
+
+We can configure how the data is sourced or change the source type.
+
+If a pre-defined source type is *not* used, Splunk doesn't show how the event is broken down and it looks quite messy i.e data is not organized into columns .etc.. 
+
+#+begin_center
+The *Data Preview* function displays how processed events will be indexed. We should use this to make sure that events are correctly seperated and the right timestamps are highlighted, before moving ahead. If not, we should continue configuring the source type by either using the pretrained list or customize the settings.
+#+end_center
+
+We can also save a predefined source-type for *reuse* purposes after making changes.
+
+The *App* context setting when saving a source type tells Splunk which application the source type is available for. The source type can be made available sytem wide or for a specific Splunk application. The /system/ option sets the source-type to be available system-wide.
+
+The *Input Settings* allow us to configure settings that are correponding with the Host where data is originally from.
+
+Indexer: 
+- We should be using *multiple indexes*.
+- With multiple indexes, we can also limit individual index to specfic user roles. We can also set seperate data retention policies.
+
+When we index a data source, Splunk assigns metadata values to the entire source.
+* Basic Searching
+
+The Searching & Reporting app is the default interface that allows searching and analysing data.
+
+It enables us to create knowledge object, dashboard, report..etc..
+
+The *What to Search* panel provides an overview of indexed data that is searchable via the Search panel.
+
+When a Search is executed or sent to Splunk, it becomes a *Search Job*.
+
+** Using the Search 
+
+The Search Bar works like a normal search bar. As we type, the Splunk Search Assitant provides some help and suggestions for how to complete the search string. It provides matching term, syntax completion.etc..
+
+Limiting a search by time is the *best practice*.
+
+We can also use the *Save As* function to save the search to *knowledge object*.
+
+The *Events* tab will display the events returned from the search.
+
+The *Patterns* tab allow seeing the general pattern.
+
+Analysis can be done via the *statistic* and *visualization* tab.
+
+#+begin_center
+Quick Note: Commands that create statistics and visualizations are called *transforming command*. These transform event data into data tables.
+#+end_center
+
+By default, a search job will remain active for 10 minutes. After this Splunk will need to run the search again.
+
+Shared search jobs remain active for seven days.
+
+Search mode
+
+| Mode    | Info                                                                    |
+|---------+-------------------------------------------------------------------------|
+| Fast    | Cutting down information for speed. No Field Discovery                  |
+| Smart   | Default Option. Toggle behaviours based on the type of search being run |
+| Verbose | As much field and event data as possible. All fields are returned.      |
+
+We can select a specific timeframe by using the Time Segment function.
+
+** Using Events/ Search Results
+
+While date is normalized, time is set by user preference.
+
+When we mouse over a search result, keywords are highlighted. We can click any item to:
+- Add item to search
+- exclude item from search
+- open a new search including only that item
+
+*** Time Range
+Time ranges are specified in the *Advanced* tab of the timerange picker.
+
+~@~ symbol "snaps" to the time unit specified. Snapping rounds /down/ to the nearest specified unit. For example, at 09:37:12, if we use ~-30m@h~ the search will look back to 09:00:00
+
+We can also specify a time range in the search bar by using ~earliest~ and ~latest~.
+
+Example:
+- earliest=-h looks back one hour
+- earliest=-2d@d looks back to two days ago, up the beginning of today
+- earliest=6/15/2017:12:30:00 looks back to the specified time
+
+** Search Everything
+
+We can use wildcard: ~*~. e.g: fail*
+
+The uppercase of these can be used for Booleans operations: ~NOT~ ~OR~ ~AND~. e.g: fail NOT password, failed OR password. Booleans operations can also have parenthesis.
+
+* Using Fields in Searches
+
+Fields are searchable key/value pairs in our event data.
+
+The Field sidebar shows all the fields we have extracted during search. They are:
+
+- Selected Fields: the utmost important ones. host and source, sourcetype are default. These are displayed on the search results.
+-Interesting Fields: They have values in *at least 20%* of the event. ~a~ denotes a string value. ~#~ denotes a numeral value.
+
+We can also *see more fields* to see stats around fields.
+
+Using fields in search we can run more efficient searches.
+e.g search ~sourcetype=linux_operation~.
+
+#+begin_center
+Field Names (e.g sourcetype) are case-senstive.
+Values are *not*.
+#+end_center
+
+Field operators include ~=~, ~!=~ and ~>~, ~>=~, ~<~, ~<=~ which are only usable with numerical values.
+
+There is a difference between using ~NOT~ and ~!=~. They will not always return the same result.
+
+Example:
+
+| status != 200    | returns all result with status fields equals something not 200      |
+| NOT status = 200 | returns all results without the field status = 200.                 |
+|                  | i.e if an event does not have a status *at all*, it will be included. |
+
+* Best Practices
+
+** General Searching
+
+Use time limitation.
+
+Use the default fields (source, sourcetype,host)
+
+The more we tell the search engine, the better.
+
+Inclusion > Exclusion.
+
+** Using Time
+
+Use the Splunk Time presets. Using Time is the single most efficient method to filter events in Splunk.
+
+We should get familiar with the Time abbreviation (~m~, ~s~, ~w~..)
+
+Use ~@a~ symbol for rounding down to the nearest unit.
+
+We can also use *absolute value*.
+
+** Using Indexes
+
+Using indexes allow us to filter events earlier in the search.
+
+It possible to use a wildcard in index values.
+
+*The index always appears as a field in search results*.
+
+Indexes are where data is stored as events.
+
+As best practice, it's always more efficient to specify one or more indexes in our search.
+e.g ~index=web~, ~index=security~.
+
+* SPL - Splunk's Search Language
+
+SPL is built from 5 components:
+- Search Term
+- Commands (e.g create charts, stats..)
+- Functions
+- Arguments
+- Clauses (define groups)
+
+SPL example: ~sourcetype=acc* status = 200 | stats list(product_name) as "Games Sold" | top "Games Sold"~
+- stats is a command, the list bit is a function, product_name is an argument, as is the clause
+
+Search components are seperated by pipes (~|~).
+
+[[./images/SPL.png]]
+
+*Visual Pipeline*: The Search Assistant provides help with completing a SPL query. By defaults, some parts of the search strings are automatically colored as we type. The color is based on the search syntax, the rest of the search string remains black.
+
+| BOOLEAN   | orange |
+| Commands  | blue   |
+| Functions | purple |
+| Arguments | green  |
+
+#+begin_center
+Tip: Ctrl (Command) + \ to seperate search components with linebreaks.
+#+end_center
+
+We can configure our SPL (search bar) for themes..etc..
+
+
+
+SPL flows left-to-right. This is a very important concept in SPL.
+
+~Search Command | Command/ Function | Command/ Function~
+
+Imagine Splunk data is like a spreadsheet, and the search term turns the spreadsheet into a smaller one.
+
+** Field Commands
+
+Field commands allow us to include or exclude specific fields from search results. This is handy and can make search run faster.
+
+e.g:
+~index = web sourcetype=access_combined~
+~|fields status clientip~
+
+The above search only displays the status and client ip.
+
+or we can do removal:
+~index = web sourcetype=access_combined~
+~|fields - status clientip~
+
+The above search removes the two field status and client ip from the result.
+
+Field extraction is one of the most costly part of searching in Splunk. The ability to limit fields can make our searches more efficient.
+
+Field inclusion happens before exclusion. Therefore, *inclusions* would lead to *better performance*. Since exclusions happen after all the fields have been returned and only affect the displaying of results, exclusion does *not* affect performance.
+
+** Table Command
+
+Table command is similar to the Fields command where as it only returns the columns listed in the arguments. However the data is returned in a tabular format.
+~index = web sourcetype=access_combined~
+~|table status clientip~
+
+** Rename Command
+
+Rename command is used to rename field.
+
+~index = web sourcetype=access_combined~
+~|table status clientip~
+~|rename clientip as "Client's IP"~
+
+New name needs to be wrapped in quotes.
+
+Once renamed, you'd need to use the new name in subsequent command. 
+
+** Dedup Command
+
+Dedup command can be used to remove duplicate events from results that share *common values*.
+
+Dedup command can be used to remove duplicate values that share a common value of a single field, or of multiple fileds.
+
+#+begin_src 
+index=security sourcetype=history* Address_Description="San Francisco"
+| dedup First_Name Last_Name
+| table Username First_Name Last_Name
+#+end_src
+
+** Sort Command
+
+Sort Command lets us display result in ascending or descending order.
+
+Sort can be used with one or more than one fields. Fields are sorted by the order that they are listed in the command.
+
+By default, sort happens ascending (~+~), descending can be indicated by adding ~-~ right after sort.
+
+i.e ~| sort - price~
+
+The positioning of the operator matters too:
+
+| ~sort - price Vendor~ | sort by price then Vendor, both descending      |
+| ~sort -price Vendor~  | sort by price descending, then Vendor ascending |
+
+Sort command can be used in junction with the ~limit~ command too, e.g ~sort sale_price Vendor limit=20~.
+
+* Transforming Commands
+
+Transforming Commands order search result into a data table that can be used by Splunk for statistical purposes. We typically need to use these to transform our result for the use of data visualization.
+
+** Top Command
+
+Finds the most common value of given fields in a result set.
+
+e.g:
+~index=sales sourcetype=vendor_sales~
+~top Vendor~
+
+The above limit the result to the *top 10* vendor by default. . It will return a list of Vendor and their counts. We can set the number by including ~limit=n~. 
+
+We can also use ~top~ command for multiple fields.
+
+~Top~ has a few clauses:
+- limit = int
+- countfield = string (rename the name of the count field)
+- percentfield = string
+- showcount = True/False
+- showperc = True/False
+- showother = True/False
+- otherstr = string
+
+** Rare Command
+
+Rare command has the same option as the Top Command, however its functionality is competely opposite. It shows the result with the *least* common values
+
+** Stats Command
+
+This is used to produce statistic.
+
+Common stats functions are:
+- count
+- distinct count
+- sum
+- average (avg)
+- min
+- max
+- list
+- values
+
+Count function:
+#+begin_src 
+index = sales sourcetype=vendor_sales
+| stats count as "Total Sales by Vendors" by product_name
+#+end_src
+
+Adding a field as an argument results into only events that has the field to be returned. 
+#+begin_src 
+index=web sourcetype=access_combined
+| stats count(action) as ActionEven
+#+end_src
+
+Distinct count provides the count of how many distinct value there are.
+#+begin_src 
+.....
+| stats distinct_count(product_name)
+#+end_src
+
+Stats Sum function
+#+begin_src 
+.....
+| stats sum(price) as "Gross Sales" by product_name
+#+end_src
+
+or combining sum and count
+#+begin_src 
+....
+| stats count as "Unit Sold" sum(price) as "Gross Sales" by product_name
+#+end_src
+
+Note that both of them have to be in the same pipe. They share the same sort function.
+
+The Avg/Min/Max functions only works with fields that have numerical values. They will exclude incorrectly formatted values.
+#+begin_src 
+...
+| stats avg(sale_price) as "Average Price"
+#+end_src
+
+The List function will list *all* field values for a given field.
+#+begin_src 
+..
+| stat list(asset) as  "Company Assets" by Employee
+#+end_src
+.. list all assets each employee has.
+
+The Value function works like the list but only returns the values
+#+begin_src 
+...
+| stats values(s_hostname) by cs_username
+#+end_src
+
+* Report and Dashboards
+
+** Reports
+
+In Splunks, reports are basically saved searches. They can show events, statistics (tables) or visualizations/ charts. Everytime a report/ saved search is run, it returns fresh new results.
+
+Statistics and Charts by default allow us to drill down to see the underlying events.
+
+Reports can also be shared and added to dashboards.
+
+Initiall a report needs to be created by running a search then use the *Save As* function.
+
+The *Run As* function allow us to set the report to be run with User Permission only. This will disallow people with User access to see things that they should not be seeing anyway.
+
+We can also use the Quick Report function after running a master search then save it as a new report.
+
+** Visualization
+
+There are many types of visualization/ charts. We have a lot of options and format our charts to best tell our stories.
+
+Charts can be based on number, times, and even location.
+
+** Dashboard
+
+A Dashboard is a collection of report, compiled into a single window.
+
+Next to the option *Save As*, we can also use *Add to Dashboard Panel*. We can also use *Add Panel* from within an existing dashboard.
+
+We can also click & drag dashboards and reports in *Edit Mode*. 
+
+We can also *Add Input* to add a filter. We give the Input a Label as well as a Token. This token is used to tie into the inline searches for our panels that are to be used with the Inut.
+
+Note that the Input will only work with the report *with an inline search*, i.e having a magnifying glass symbol on the panel. Clicking on these symbol allows us to edit searches.
+
+Panels without an inline search can also be cloned to one with an inline search.
+
+* Pivot and Datasets
+
+Pivots allow users who don't understand SPL to design reports in a simple interface without having to use SPL.
+
+Data model are knowledge objects that provide the data structure that drives Pivots. These are created by users with Admin and PowerUsers roles. These people are those who understands SPL.
+
+We can think of Data Model as *Framework* and Pivots as the *Interface* to the data.
+
+Each Data model is made up of multiple datasets. Datasets are small collections of data designed for a specific purpose. Datasets are basically pre-built lookups and data models make it easier to interact with data.
+
+From the *Search and Reporting* app, we can use the *Datasets* tab.
+
+From *Settings*, open *Data model*. 
+
+** Instant Pivot
+
+Instant Pivots tool can get users to quickly get the data without a created Data Model.
+
+We use a non-transforming command, then select *visualziation* and *create pivot*.
+
+** Datasets
+
+Datasets allow user to access small slices of data. They can access data sets in the datasets tab.
+
+
+* Creating and Using Lookups
+
+Lookups allow us to add other fields to events not included in the index data. This is needed when static data is required for searches but isn't available in the index. Lookups pull data from standalone files at search time and add it to search result.
+
+Example: adding User's Name to RFD Code, Descriptions for HTTP status codes, sale prices for products.
+
+A lookup is categorised as a Dataset. There are two steps.
+
+First we define a lookup table then we define a lookup. A lookup table can be in form of a csv.
+
+Example:
+
+- We have a csv file ready:
+[[./images/SplunkLookUp.png]]
+
+This CSV file consist of 2 columns, Input Field(left) and Output Field (right). The value on the Input field is corresponding to the values in the event.
+
+- We then create a *New Lookup table file* by uploading the file into Splunk.
+
+To verify that the lookup import table is working. We can use the inputlookup search command with the csv filename as the argument.
+
+~| inputlookup http_status.csv~
+
+- With the table with the lookup data, we need to define the Look Up by going into *Lookup*. We then use define the *File-based* Lookup file.
+
+- We can now use the Lookup Command in our searches
+#+begin_src 
+...
+| lookup http_status code as status
+#+end_src
+
+"Use the lookup values in the http_status lookup table to match the field "code* we want to match on."
+
+By default all fields in the lookup tables are returned as output fields except input fields.
+
+We can choose what fields our lookup returns by adding an ~OUTPUT~ clause i.e
+
+~OUTPUT code as "HTTP Code"~
+
+Note: the output lookup fields exist only for the current search.
+
+The ~OUTPUTNEW~ command can be used when we do not want to overwrite existing fields.
+
+** Creating an automatic Lookup
+
+We can create an automatic lookup by going into *Settings* > *Automatic Lookup* > *Add New*.
+
+then select lookup table, choose what data to apply that lookup table too.
+
+then tell Splunk how to look up.
+
+*Lookup input fields =* [input field in lookup table] = [field name in the event]
+
+Now when we run the search we no longer need to run the lookup command as the automatic lookup is in action.
+
+** Additional Lookup Options
+
+In addition to filebased lookup, we also have
+- Populate Lookup table with search result
+- Define lookup based on external script
+- Use DB Connect to create lookup table based on external database
+- Use Geospatial lookups to create queries that can be used to generate choropleth map visualizations
+- Populate events with KV Store fields
+
+* Scheduled Report and Alerts
+
+Scheduled reports are useful for various business purposes. They can also trigger functions like generate dashboard and automatically sending reports via email.
+
+After we create a report, there is a schedule button that can be selected. Then we can edit the schedule as well as selecting the time-range that the report will cover.
+
+Splunks has settings that allow us to set schedule priority. This is needed because scheduled reports put additional strains on our hardware system. Schedule Window set the timeframe during which to run the report. This provides some timing flexibility how long the report can be delayed for, as long as it is run within the timeframe.
+
+We can then select which actions to trigger.
+
+** Manage scheduled reports
+
+This can be managed by clicking *Settings* > *Searches, Reports and Alerts* window.
+
+We also display report to people who don't have Splunk access. This is done by *Embedding* the report.
+
+#+begin_center
+An embedded report will be accessible by *anyone* who has access to the webpage where the report is embedded.
+
+The embedded report will not show until it has been run.
+#+end_center
+
+You can also embed report to dashboard
+
+** Splunk Alerts
+
+These are based on searches that run on scheduled intervals or real-time. They are triggered once a search is complete. They are activated once a certain requirement is met.
+
+Alerts can do a bunch of things.
+
+*Shared in App* alerts will be viewable by everyone. Users with user access will have read and users with super access will have write access.
+
+Real-time alerts run continuously in the background. However these use extra overhead on the system.
+
+Triggers can be set to various of things, including per-result, per- number of result, or custom.
+
+We can also set how many times an alert trigger and throttle how much alerts triggers.
+
+** Manage Alerts
+
+Alerts can be managed and viewed by going to *Triggered Alerts*.
