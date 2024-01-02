@@ -1,7 +1,7 @@
 ---
 layout: post-toc
 title: React Hooks
-tags: frontend tech software
+tags: webdev software tech
 ---
 
 # Hello World
