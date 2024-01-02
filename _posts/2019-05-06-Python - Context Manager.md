@@ -1,26 +1,27 @@
-#+TITLE: Python - Context Manager
-#+DATE:
-#+SETUPFILE: https://akhsim.github.io/read-akhsiM-orgs/theme-readtheorg-akhsiM.setup
+---
+title: Python - Context Manager
+layout: post-toc
+tags: python programming
+---
+## General
 
-* General
-
-Context managers allow us to properly manage and allocate resources when we want to. The most widely used example of context managers is the ~with~ statement.
+Context managers allow us to properly manage and allocate resources when we want to. The most widely used example of context managers is the `with` statement.
 
 In Python, the recommended way of working with a file object is by using Context Manager.
 
-* Building our own context manager
+## Building our own context manager
 
 There are a couple of ways to write out our own context manager:
 - Using a class
 - Using a function with a decorator
 
-In the below section, we are going to be writing our own context manager using class and function decorator. IRL, this is not needed because Python already comes with ~open()~ which itself is a context manager function.
+In the below section, we are going to be writing our own context manager using class and function decorator. IRL, this is not needed because Python already comes with `open()` which itself is a context manager function.
 
-** Using a class
+### Using a class
 
 First, we'll start with using a class:
 
-#+BEGIN_SRC python :exports both :results output :session
+```python
 class Open_File():
 
 	def __init__(self, filename, mode):
@@ -43,23 +44,24 @@ with Open_File('sample.txt', 'w') as f:
 	f.write('Testing')
 
 print(f.closed) # Making sure that the resouce has been closed.
-#+END_SRC
+```
 
-#+RESULTS:
+```
 : True
+```
 
 Walk through:
-	- When the ~Open_File()~ object is instantiated, the ~__init__~ method is called, to set the object's attributes.
-	- Because the ~with~ statement is called, the ~__enter__~ method is called, returning the resource variable. ~f~ is set to the file object (~return self.file~)
-	- Within the context manager, we can do whatever with the file object ~f~.
-	- Whenever we exit out of the ~with~ block, i.e the context manager, the ~__exit__~ method is called.
+	- When the `Open_File()` object is instantiated, the `__init__` method is called, to set the object's attributes.
+	- Because the `with` statement is called, the `__enter__` method is called, returning the resource variable. `f` is set to the file object (`return self.file`)
+	- Within the context manager, we can do whatever with the file object `f`.
+	- Whenever we exit out of the `with` block, i.e the context manager, the `__exit__` method is called.
 
 
-** Using a function
+### Using a function
 
-We'll need the ~contextlib~ module.
+We'll need the `contextlib` module.
 
-#+BEGIN_SRC python :exports both :results output :session
+```python
 from contextlib import contextmanager
 
 @contextmanager
@@ -78,24 +80,25 @@ with open_file('sample.txt', 'w') as f:
 
 print(f.closed)
 
-#+END_SRC
+```
 
-#+RESULTS:
+```
 : Before 'with' body.., setting variable: <_io.TextIOWrapper name='sample.txt' mode='w' encoding='UTF-8'>
 : During 'with' body
 : after 'with' body..
 : True
 
-Looking at the ~yield~ statement:
-- Everything before the ~yield~ statement is equivalent to the ~__enter__~ method of the class. 
-- The ~yield~ statement is where the code within the ~with~ statement is going to run.
-- Everything after the ~yield~ statement is the ~__exit__~ method of the class
+Looking at the `yield` statement:
+- Everything before the `yield` statement is equivalent to the `__enter__` method of the class. 
+- The `yield` statement is where the code within the `with` statement is going to run.
+- Everything after the `yield` statement is the `__exit__` method of the class
+```
 
-*** Exception handling
+### Exception handling
 
 We should be putting our context manager in a try block:
 
-#+BEGIN_SRC python :exports both :results output :session
+```python
 from contextlib import contextmanager
 
 @contextmanager
@@ -113,19 +116,20 @@ with open_file('sample.txt', 'w') as f:
 	print('During \'with\' body')
 
 print(f.closed)
-#+END_SRC
+```
 
-#+RESULTS:
+```
 : Before 'with' body.., setting variable: <_io.TextIOWrapper name='sample.txt' mode='w' encoding='UTF-8'>
 : During 'with' body
 : after 'with' body..
 : True
+```
 
 Why? If there is any issue with openning the file, the teardown code will still be executed, making sure that the resource is closed properly.
-* IRL
+# IRL
 Let's say we are working on a project that involves moving between different directories and list the contents within multiple times.
 
-#+BEGIN_SRC python :exports both :results output :session
+```python
 import os
 
 cwd = os.getcwd()  # save current dir in memory
@@ -144,7 +148,7 @@ os.chdir('sample dir')
 print(os.listdir())  
 os.chdir(cwd) 
 
-#+END_SRC
+```
 
 #+RESULTS:
 : ['samplefile.txt']
@@ -157,7 +161,7 @@ Analysis:
 
 >> This is a good candidate to be using a context manager.
 
-#+BEGIN_SRC python :exports both :results output :session
+```python
 import os
 from contextlib import contextmanager
 
@@ -183,9 +187,9 @@ with ch_dir_temp('sample dir'):
 
 with ch_dir_temp('sample dir'):
 	print(os.listdir())
-#+END_SRC
+```
 
-#+RESULTS:
+```
 : Moving to sample dir..
 : ['samplefile.txt']
 : Moved back to /home/kkennynguyen/pCloudDrive/Documents/OrgNotes/Learning
@@ -195,5 +199,6 @@ with ch_dir_temp('sample dir'):
 : Moving to sample dir..
 : ['samplefile.txt']
 : Moved back to /home/kkennynguyen/pCloudDrive/Documents/OrgNotes/Learning
+```
 
-Explanation: We are not working within any resource object so we can just put a ~yield~ without any variable.
+Explanation: We are not working within any resource object so we can just put a `yield` without any variable.

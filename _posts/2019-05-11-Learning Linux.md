@@ -4,7 +4,8 @@ layout: post-toc
 tags: linux software
 ---
 
-[[./img/FS-Hierarchy.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/FS-Hierarchy.png">
+
 ## Process Utilization
 ### top
 *1st line:* /(uptime)/ Current time | How long the system been running | How many logged-on users | System load avg.
@@ -69,14 +70,14 @@ Used for monitoring CPU usage as well as *disk usage*.
 /N/A on default but can be installed by `sudo apt install sysstat`./
 
 - First part is CPU information:
-| <20>                                                                      | <20>                                                                           | <20>                                                    | <20>                                                                                   | <20>                                                                                                                 | <20>                                                                              |
-|---------------------------------------------------------------------------+--------------------------------------------------------------------------------+---------------------------------------------------------+----------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------|
+
+|---------------------------------------------------------------------------|--------------------------------------------------------------------------------|---------------------------------------------------------|----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | %user                                                                     | %nice                                                                          | %system                                                 | %iowait                                                                                | %steal                                                                                                               | %idle                                                                             |
 | %CPU Utilization that occurer while executing at user level (application) | %CPU Utilization that occured while executing at user level with nice priority | %CPU Utilization that occured at system level (kernel). | % Time that CPU were idle during which the system had an outstanding disk I/O request. | % Time spent in involuntary wait by virtual CPU or CPUs while the hypervisor was servicing another virtual processor | % Time that CPU were idle and that the system did *not* have an outstanding request |
 
 - Second part is Disk Utilization:
-| <20>                                                                                                                                                                                            | <20>                                                | <20>                                                    | <20>                    | <20>                       |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+---------------------------------------------------------+-------------------------+----------------------------|
+
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|---------------------------------------------------------|-------------------------|----------------------------|
 | tps                                                                                                                                                                                             | kB_read/s                                           | kB_wrtn/s                                               | kB_read                 | kB_writn                   |
 | No. of Transfer per Second. A transfer is an I/O request to the device. Multiple logical requests can be combined into a single I/O request to the deivce. A transfer is of indeterminate size. | Amount of Data read from device (kilobytes per sec) | Amount of Data written to the device (kilobyte per sec) | Total number of kB read | Total number of kB written |
  
@@ -291,7 +292,7 @@ Configuration file for sambe is at `/etc/samba/smb.conf`. The default conf file 
 ### Common components
 
 | Common Components | Definition                                                |
-|-------------------+-----------------------------------------------------------|
+|-------------------|-----------------------------------------------------------|
 | ISP               | Internet Service Provider                                 |
 | Router            | Mostly wireless, allows local devices to talk to Internet |
 | WAN               | Wide Area Network, network that encompasses *everything*    |
@@ -650,7 +651,7 @@ It's a GUI applet but we can also interact with it using CLI tools.
 
 `nmcli` allows utilisation of Network Manager via CLI instead of GUI. It is usefule for servers, headless machines and terminal.
 
-```nmcli
+```
 wlp4s0: connected to TheWerriBeans-5G
         "Intel Wireless 8265 / 8275 (Dual Band Wireless-AC 8265)"
         wifi (iwlwifi), 00:28:F8:26:35:C7, hw, mtu 1500
@@ -674,7 +675,6 @@ lo: unmanaged
 DNS configuration:
         servers: 192.168.1.1
         interface: wlp4s0
-
 ```
 ### ARP
 
@@ -778,7 +778,8 @@ Each line represents a hop, i.e a router or machine that is between myself and t
 
 Last three columns represent the round-trip time of a packet to get to that router. By default we send 3 along the route.
 
-(`$ ping google.com` retunrs similar round-trip time to last message with TTL=9.
+`$ ping google.com` retunrs similar round-trip time to last message with TTL=9.
+
 ### #Well Known Ports#
 
 We can get a list of well-known ports by looking at `/etc/services`:
