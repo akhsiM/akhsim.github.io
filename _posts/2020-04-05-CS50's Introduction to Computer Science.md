@@ -12,7 +12,7 @@ It's just the process of solving problems.
 
 We have some *input* and we want an *output*. What's happening in the middle is computer science.
 
-<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/cs50cs.png">
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/cs50cs.png">
 
 However, when we start to look into problems from the get-go. The first important step that we need to think about is how to represent the information on the computer. Unlike the human world where there are 9 digits, as well as different letters and symbols, computer only speaks in two digits - ones and zeros. 
 
@@ -76,7 +76,7 @@ To wrap it up, all of the information that is represented on the computer come d
 
 Now that we are able to represent information on the computer i.e having the input. How do we get our *output*? What's in the box in the middle?
 
-<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/cs50cs.png">
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/cs50cs.png">
 
 By *algorithm*, which is the basis of Computer Science. An algorithm is just a step-by-step instructions that we use to tell the computers how to process out input to get the desired output.
 
@@ -124,7 +124,7 @@ int main(void)
 
 The above script can be illustrated as per illustration below that is in Scratch:
 
-<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/CScratch.png">
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/CScratch.png">
 
 *Breakdown*: 
 - The 'when green flag clicked' block in Scratch basically starts the main program. In C, the first line for the same is `int main(void)`.
@@ -134,7 +134,7 @@ The above script can be illustrated as per illustration below that is in Scratch
 - `.c` is the file extension for source code files that that are written in C/C++
 
 #+begin_center
-<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/helloworldC.png">
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/helloworldC.png">
 #+end_center
 
 Computers don't understand English, or even the C programming language. Therefore we need to convert the source code files into binary instructions which are understood by the computer. The tool which we can use is called the *compiler*.
@@ -147,7 +147,7 @@ C language source code ==> [compiler] ==> machine-language binary file
 
 Let's try to do this:
 
-<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/inputC.png">
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/inputC.png">
 
 We try this by:
 
@@ -221,7 +221,7 @@ We can also use the `make` utility to compile our C program.
 
 Let's try doing this in C:
 
-<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/ScratchCondition.png">
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/ScratchCondition.png">
 
 In C, conditions are not ended with semicolons.
 
@@ -565,7 +565,7 @@ Data types are different ways that we can store our variables in. Each of these 
 
 ### Memory
 
-<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/ram.png">
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/ram.png">
 
 RAMs are chips we have inside our computers that store data for short-term use. This is why they are called 'Random Access Memory'. We might save our programe or file to our hard drive or SSD for long-term storage, however when we open it, it gets copied to RAM first
 
@@ -660,7 +660,7 @@ What does the number three `[3]`? It represents the number of values that are re
 
 The above code also violates the DRY principle which is "Don't Repeat Yourself". The Repetition is here:
 
-<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/cs50dry.png">
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/cs50dry.png">
 
 So, the next iteration of the same function could be:
 
@@ -746,7 +746,7 @@ printf("%c%c%c%c\n", names[0][0], names[0][1], names[0][2], names[0][3]);
 
 In the above example we have initialized four string variables. Although there is no concept of left-right, up-down in a computer memory space, we can think of it like the representation below:
 
-<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/memspace.png">
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/memspace.png">
 
 This is not what programming is. However it's good to know what's going on under the hood, which is just manipulation of data. 
 
@@ -891,7 +891,7 @@ Else if 50 > middle item
 
 ## Big O
 
-<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/bigO.png">
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/bigO.png">
 
 The graph above illustrates different algorithms with the big /O/ notation, which can be thought of as *"on the order of"*. Big /O/ notation represent the *upper bound* of the number of steps for our algorithm.
 
