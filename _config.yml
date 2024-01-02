@@ -1,18 +1,18 @@
 # change the followings to match your Github username and repo name
-baseurl: "/tailpages" # the name of your github repo
-url: "https://harrywang.github.io" # the url of your github pages
+baseurl: "/akhsim.me" # the name of your github repo
+url: "https://akhsim.github.io" # the url of your github pages
 
 # site information used in page title, meta data etc.
-title: "Tailpages: Tailwind + Github Pages"
-description: A Github Pages (Jekyll) template based on TailwindCSS
+title: "Misha"
+description: Misha Nguyen's Personal Website
 
 # color theme for links
-theme-color: indigo # indigo|yellow|pink|green|stone|
+theme-color: stone # indigo|yellow|pink|green|stone|
 
 # homepage information
-author: Satoshi Nakamoto
-author-bio: Creator of Bitcoin  # change to false to hide
-author-image: 279.png  # file must be in the /assets/img/ folder
+author: Misha Nguyen
+author-bio: Software Developer/ Cyclist/ Thinker  # change to false to hide
+author-image: byJamesLayh.png  # file must be in the /assets/img/ folder
 
 # navigation menu
 show-nav-menu: true
@@ -20,17 +20,15 @@ show-nav-menu: true
 nav-menu:
 - text: About
   permalink: about
-- text: Bitcoin
-  permalink: bitcoin
 - text: Blog
   permalink: blog
 
 # use false to turn off any social media links
-twitter: https://twitter.com/
-facebook: https://facebook.com/
-instagram: https://instagram.com/
-github: https://github.com/
-linkedin: https://linkedin.com/
+twitter: false
+facebook: false
+instagram: https://www.instagram.com/mishkanguyen/
+github: https://github.com/akhsim
+linkedin: https://www.linkedin.com/in/mishkaquangnguyen/
 medium: false
 google-scholar: false
 email: false
