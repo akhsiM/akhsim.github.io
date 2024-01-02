@@ -12,7 +12,7 @@ It's just the process of solving problems.
 
 We have some *input* and we want an *output*. What's happening in the middle is computer science.
 
-<img class="mx-auto w-1/2" src="/assets/orgNotesImages/cs50cs.png">
+<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/cs50cs.png">
 
 However, when we start to look into problems from the get-go. The first important step that we need to think about is how to represent the information on the computer. Unlike the human world where there are 9 digits, as well as different letters and symbols, computer only speaks in two digits - ones and zeros. 
 
@@ -55,20 +55,20 @@ i.e: When we have one digit, we can process upto but not including number 10 (10
 Let's try turning a few numerical numbers into binary values:
 
 - How do we represent the number 50 in binary?
-> Ok so we have ~[64][32][16][8][4][2][1]~. 64 is 2^6 so we know that we don't need the seventh bits. We need six. So now we know that our binary representation has six bits.
+> Ok so we have `[64][32][16][8][4][2][1]`. 64 is 2^6 so we know that we don't need the seventh bits. We need six. So now we know that our binary representation has six bits.
 > We then take away the leftmost bit which is 32. We do this by switching the leftmost bit to 1.
-> Ok so now we have ~1 0 0 0 0 0~, which is representation of number 32. 50 minus 32 is 18, so we need to take away 18 more. The next biggest number is 16, so we take away the next bit.
-> Now we have ~1 1 0 0 0 0~, which is the representation of 48. We now have only two left. So we only need to take away the second bit (2). And the result is ~1 1 0 0 1 0~.
+> Ok so now we have `1 0 0 0 0 0`, which is representation of number 32. 50 minus 32 is 18, so we need to take away 18 more. The next biggest number is 16, so we take away the next bit.
+> Now we have `1 1 0 0 0 0`, which is the representation of 48. We now have only two left. So we only need to take away the second bit (2). And the result is `1 1 0 0 1 0`.
 
 ### Byte 
 
 That's the very basis of computer binary language. However we all know that when we think about how computer represent single characters, it's not in one, or two bits but actually 8 bits. This is one *byte*.
 
-We know that numbers aren't everything that are represented on the computer but also letters are other stuff. Therefore all we need is to come up with a system that assign letter "symbols" to numbers so that our computer can understand a letter when they are provided with a number. Thus we agree that letter ~A~ is number ~65~, in the context of word-processing.
+We know that numbers aren't everything that are represented on the computer but also letters are other stuff. Therefore all we need is to come up with a system that assign letter "symbols" to numbers so that our computer can understand a letter when they are provided with a number. Thus we agree that letter `A` is number `65`, in the context of word-processing.
 
-Therefore, letter ~A~, in binary values,  represented by a byte is:  ~0 1 0 0 0 0 0 1~. The aforementioned system is the famous ASCII. The system is American-biased however. Unicode is then born which is the superset of ASCII. Unicode is also the system that engines the emoji.
+Therefore, letter `A`, in binary values,  represented by a byte is:  `0 1 0 0 0 0 0 1`. The aforementioned system is the famous ASCII. The system is American-biased however. Unicode is then born which is the superset of ASCII. Unicode is also the system that engines the emoji.
 
-..This is only the beginning. A few hundred years ago we humans also come up with a system to represent colours, which is the RGB system. Which is pretty much a three-value system to represent colours. A single pixel can range from ~[0 0 0]~ which is black, to ~[255 255 255]~, which is white. We can now easily tell that a single pixel is consisted of *three bytes* which is 24 bits. Black and White images consist of 8 bit because the colours only range from white to black.
+..This is only the beginning. A few hundred years ago we humans also come up with a system to represent colours, which is the RGB system. Which is pretty much a three-value system to represent colours. A single pixel can range from `[0 0 0]` which is black, to `[255 255 255]`, which is white. We can now easily tell that a single pixel is consisted of *three bytes* which is 24 bits. Black and White images consist of 8 bit because the colours only range from white to black.
 
 To wrap it up, all of the information that is represented on the computer come down to *ones and zeroes*.
 
@@ -76,13 +76,13 @@ To wrap it up, all of the information that is represented on the computer come d
 
 Now that we are able to represent information on the computer i.e having the input. How do we get our *output*? What's in the box in the middle?
 
-<img class="mx-auto w-1/2" src="/assets/orgNotesImages/cs50cs.png">
+<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/cs50cs.png">
 
 By *algorithm*, which is the basis of Computer Science. An algorithm is just a step-by-step instructions that we use to tell the computers how to process out input to get the desired output.
 
 A human example of algorithm is finding a contact in the phone book. An inefficient algorithm would be to turn the pages one-by-one to find someone with last name starting with *S* using the phonebook. A better one is to turn the pages two-by-two. A better algorithm would be to cut the phonebook into *half* and do it again until we are closer to the *S* part. This is basically the divice and conquer method.
 
-What we just compared are two algorithms. Turning one-by-one page can be represented ~n~ and divide and conquer is ~log(n)~ where n is the size of the problem. There is fundamentally a big difference between these two.
+What we just compared are two algorithms. Turning one-by-one page can be represented `n` and divide and conquer is `log(n)` where n is the size of the problem. There is fundamentally a big difference between these two.
 Supposedly, if the book has 1024 (2^ *10*) page, it would take us *10* steps to get to the page if we strictly keep on divide and conquer. The pseucode code for this algorithm would be:
 
 *Pick up* phone book
@@ -124,17 +124,17 @@ int main(void)
 
 The above script can be illustrated as per illustration below that is in Scratch:
 
-<img class="mx-auto w-1/2" src="/assets/orgNotesImages/CScratch.png">
+<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/CScratch.png">
 
 *Breakdown*: 
-- The 'when green flag clicked' block in Scratch basically starts the main program. In C, the first line for the same is ~int main(void)~.
+- The 'when green flag clicked' block in Scratch basically starts the main program. In C, the first line for the same is `int main(void)`.
 - In C, strings are encapsulated in double quotes.
-- In C, we finish our line of code with a semicolon ~;~
-- The header line on the top means somewhere on our computer there is a file named ~stdio.h~ that includes the code that allow us to access and use the ~printf~ function. The ~include~ line tells the computer that our script will need the computer to include that file when it's ran. Without that line, the computer would not understand how to do the ~printf~ function.
-- ~.c~ is the file extension for source code files that that are written in C/C++
+- In C, we finish our line of code with a semicolon `;`
+- The header line on the top means somewhere on our computer there is a file named `stdio.h` that includes the code that allow us to access and use the `printf` function. The `include` line tells the computer that our script will need the computer to include that file when it's ran. Without that line, the computer would not understand how to do the `printf` function.
+- `.c` is the file extension for source code files that that are written in C/C++
 
 #+begin_center
-<img class="mx-auto w-1/2" src="/assets/orgNotesImages/helloworldC.png">
+<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/helloworldC.png">
 #+end_center
 
 Computers don't understand English, or even the C programming language. Therefore we need to convert the source code files into binary instructions which are understood by the computer. The tool which we can use is called the *compiler*.
@@ -147,7 +147,7 @@ C language source code ==> [compiler] ==> machine-language binary file
 
 Let's try to do this:
 
-<img class="mx-auto w-1/2" src="/assets/orgNotesImages/inputC.png">
+<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/inputC.png">
 
 We try this by:
 
@@ -161,9 +161,9 @@ int main(void)
 }
 ```
 
-The ~%s~ is the dynamic placeholder of type string that we use to inesrt the variable *answer* into the printed line.
+The `%s` is the dynamic placeholder of type string that we use to inesrt the variable *answer* into the printed line.
 
-The ~printf~ function is one that takes from zero to many arguments. In the above example, we passed two arguments.
+The `printf` function is one that takes from zero to many arguments. In the above example, we passed two arguments.
 
 If we go on to compile the file, we'd get a bunch of errors. This is normal. A lot of the times, a single mistake can lead to many errors because the compiler would then starts intepreting correct code incorrectly and generates more "phantom errors".
 
@@ -172,11 +172,11 @@ We should jump to the very first error:
 input.c: In function ‘main’:
 input.c:5:5: error: unknown type name ‘string’; did you mean ‘stdin’?
     5 |     string answer = get_string("What's your name?\n");
-      |     ^~~~~~
+      |     ^`
       |     stdin
 ```
 
-The error was unhelpful because in this example we actually meant to want a *string*, not ~stdin~. 
+The error was unhelpful because in this example we actually meant to want a *string*, not `stdin`. 
 
 To get around this we have to import a training wheel *library* that CS50 has created. I installled this from yay. 
 
@@ -202,7 +202,7 @@ input.c:(.text+0x1a): undefined reference to `get_string'
 collect2: error: ld returned 1 exit status
 ```
 
-This means the computer did not understand what ~get_string~ means. It turns out that in C, albeit a little bit redundant, we also have to tell our compiler to add the special CS50 library.
+This means the computer did not understand what `get_string` means. It turns out that in C, albeit a little bit redundant, we also have to tell our compiler to add the special CS50 library.
 
 ```
 $ gcc input.c -o input -lcs50
@@ -215,17 +215,17 @@ Kenny
 Hello, Kenny
 ```
 
-We can also use the ~make~ utility to compile our C program.
+We can also use the `make` utility to compile our C program.
 
 ## Dealing with conditions and variable
 
 Let's try doing this in C:
 
-<img class="mx-auto w-1/2" src="/assets/orgNotesImages/ScratchCondition.png">
+<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/ScratchCondition.png">
 
 In C, conditions are not ended with semicolons.
 
-Because the single ~=~ is used as the assignment operator, we need to use ~==~ to compare two values.
+Because the single `=` is used as the assignment operator, we need to use `==` to compare two values.
 
 ```
 {
@@ -312,48 +312,48 @@ Hello, world - run 50
 ## Types, formats and operators
 
 There are other types we can use for our variables
-- ~bool~: a Boolean expression of either true or false
-- ~char~: a single character like a or 2.
+- `bool`: a Boolean expression of either true or false
+- `char`: a single character like a or 2.
   - a single character always take up 1 byte of memory (8 bit).
-- ~double~: a floating-point value with even more digits
-- ~float~: a floating-point value, or real number with a decimal value
+- `double`: a floating-point value with even more digits
+- `float`: a floating-point value, or real number with a decimal value
   - These are real numbers with a decimal point in them.
   - Also contained within 4 bytes of memory (32 bits).
   - It's a little bit more complicated to talk about the value range of float. For float the limitation is with precision, hence the *precision problem*.
-  - Fortunately we have data type ~double~ which is double precision. It takes 8 bytes of memory (64 bits).
-- ~int~: integers up to a certain size, or number of bits
-  - ~int~ values are stored in 4 bytes so 32 bit. There are only 2&32 possible values.
+  - Fortunately we have data type `double` which is double precision. It takes 8 bytes of memory (64 bits).
+- `int`: integers up to a certain size, or number of bits
+  - `int` values are stored in 4 bytes so 32 bit. There are only 2&32 possible values.
   - limited to values ranging from negative 2^31 to positive 2^31.
   - We also have *unsigned int* which is a qualifier that can be applied to *int*. It effectively doubles the positive range of variable of *int* with the cost of disallowing negative values. Therefore *unsigned int* values range from 0 to 2^32.
-- ~long~: integers with more bits, so they can count higher
-- ~string~: a string of characters
-- ~void~ is a type, but not a /data type/. It's somewhat like a placeholder.
-- ~structs~ are structures. These are defined types (/typedefs/) that are grouping of different data types. Defined types are custom data types.
+- `long`: integers with more bits, so they can count higher
+- `string`: a string of characters
+- `void` is a type, but not a /data type/. It's somewhat like a placeholder.
+- `structs` are structures. These are defined types (/typedefs/) that are grouping of different data types. Defined types are custom data types.
 
 And the CS50 library has corresponding functions to get input of various types:
-- ~get_char~
-- ~get_double~
-- ~get_float~
-- ~get_int~
-- ~get_long~
-- ~get_string~
+- `get_char`
+- `get_double`
+- `get_float`
+- `get_int`
+- `get_long`
+- `get_string`
 
 For printf, too, there are different placeholders for each type:
-- ~%c~ for chars
-- ~%f~ for floats, doubles
-- ~%i~ for ints
-- ~%li~ for longs
-- ~%s~ for strings
+- `%c` for chars
+- `%f` for floats, doubles
+- `%i` for ints
+- `%li` for longs
+- `%s` for strings
 
 And there are some mathematical operators we can use:
-- ~+~ for addition
-- ~-~ for subtraction
-- ~*~ for multiplication
-- ~/~ for division
-- ~%~ for remainder
+- `+` for addition
+- `-` for subtraction
+- `*` for multiplication
+- `/` for division
+- `%` for remainder
 ## Writing a function
 
-The reason why we can use things like ~printf~ is that other people in the history of computer science has written up the function for us. We can do the same thing too.
+The reason why we can use things like `printf` is that other people in the history of computer science has written up the function for us. We can do the same thing too.
 
 In this example, lets' write a custom function.
    ```
@@ -378,9 +378,9 @@ int main(void)
 
 This is working code, however it does not look good. Why? Because it's good practice to put the main function at the very top of our source code file. If we keep adding custom function to the top, we would have to scroll through millions of custom function declarations until we reach the main function when reading the source code.
 
-If we simply move the ~main()~ declaration to the top, the compiler would spit out error? Why? Because at the time of ~main()~ being called, thus invoking ~cough()~, the C compiler does not actually know what ~cough()~ is. This is because source code file are simply read top-down.
+If we simply move the `main()` declaration to the top, the compiler would spit out error? Why? Because at the time of `main()` being called, thus invoking `cough()`, the C compiler does not actually know what `cough()` is. This is because source code file are simply read top-down.
 
-Here's how we do it: We call the ~cough()~ earlier at the top, without actually specifying what it does.
+Here's how we do it: We call the `cough()` earlier at the top, without actually specifying what it does.
 
 #+begin_center c
 #include <stdio.h>
@@ -491,7 +491,7 @@ Compilation is the process of turning human-readable source code into machine co
 Compiling is actually made up of four small steps. These are:
 
 - *Preprocessing*
-This involves looking at lines that start with ~#~ like, ~#include~ in C before everything else. Essentially, during pre-processing, these lines are replaced with other lines that are imported from the reference lirbraries, or header files. The new content is the lines that we want to include in our program.
+This involves looking at lines that start with `#` like, `#include` in C before everything else. Essentially, during pre-processing, these lines are replaced with other lines that are imported from the reference lirbraries, or header files. The new content is the lines that we want to include in our program.
 - *Compiling*
 Even though we have been using this term quite liberally, its meaning is actually more precise than "turning source code into binary". When a program is compiled, it is turned from source code into assembly code.  They aren't binary code however assembly codes are even lower-level instructions that are close to binary instructions  that a computer's CPU can understand. They generally operate on *bytes* themselves as opposed to abstractions like variable names. Assembly instructions are very low-level and the CPU follows these to move things around in its memory. It looks like this:
 ```
@@ -522,9 +522,9 @@ main:                         # @main
 ```
 
 - *Assembling*
-This is the step that involves turning the assembly code into zeroes and ones like ~001111010101010~. 
+This is the step that involves turning the assembly code into zeroes and ones like `001111010101010`. 
 - *Linking*
-This is the very last step of compilation where the contents of the previously compiled libraries that we want to link. For example when we put ~#include <cs50.h>~ in our source code and then compile it, the compiled ~cs50.c~ module will be combined with the binary of our program so that the end product is a single binary file that includes instruction from our source code and ~cs50.c~, ~stdio.c.~
+This is the very last step of compilation where the contents of the previously compiled libraries that we want to link. For example when we put `#include <cs50.h>` in our source code and then compile it, the compiled `cs50.c` module will be combined with the binary of our program so that the end product is a single binary file that includes instruction from our source code and `cs50.c`, `stdio.c.`
 
 ## Bugs
 
@@ -544,14 +544,14 @@ We would get this error:
 mistake.c: In function ‘main’:
 mistake.c:3:5: warning: implicit declaration of function ‘printf’ [-Wimplicit-function-declaration]
     3 |     printf("hello, world\n");
-      |     ^~~~~~
+      |     ^`
 mistake.c:3:5: warning: incompatible implicit declaration of built-in function ‘printf’
 mistake.c:1:1: note: include ‘<stdio.h>’ or provide a declaration of ‘printf’
   +++ |+#include <stdio.h>
     1 | int main(void)
 ```
 
-This means that we have forgotten to include the ~#include <stdio.h>~ line at the beginning of our file. This library needs to be imported so that we can use ~printf~.
+This means that we have forgotten to include the `#include <stdio.h>` line at the beginning of our file. This library needs to be imported so that we can use `printf`.
 
 The two above errors are *syntax errors* that are easily caught because they are thrown when we compile or run the program. However, we can also encounter *logical errors* that are trickier to catch. These are the ones that our programs will still run fine with, however it does not do exactly what we intend to instruct it to.
 
@@ -565,13 +565,13 @@ Data types are different ways that we can store our variables in. Each of these 
 
 ### Memory
 
-<img class="mx-auto w-1/2" src="/assets/orgNotesImages/ram.png">
+<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/ram.png">
 
 RAMs are chips we have inside our computers that store data for short-term use. This is why they are called 'Random Access Memory'. We might save our programe or file to our hard drive or SSD for long-term storage, however when we open it, it gets copied to RAM first
 
 Compared to long-term storage, RAM is smaller and more temporary and much faster.
 
-We can think of bytes stored in RAMs as though they are in a grid, depicted in yellow in the image above. Therefore, if we instantiate a variable of type ~char~, that variable will consume 4 bytes of the RAM.
+We can think of bytes stored in RAMs as though they are in a grid, depicted in yellow in the image above. Therefore, if we instantiate a variable of type `char`, that variable will consume 4 bytes of the RAM.
 
 ### Arrays
 
@@ -589,9 +589,9 @@ int main(void)
 }
 ```
 
-When we compile and run this code, we should see ~H I !~.
+When we compile and run this code, we should see `H I !`.
 
-However, we learned in Week 0 that characters are really just numbers underneath before they get translated using ASCII. So we can change the print format in our program to the below in order to see the numeric values of each char ~( H I !)~ which are ~( 72 73 33)~.
+However, we learned in Week 0 that characters are really just numbers underneath before they get translated using ASCII. So we can change the print format in our program to the below in order to see the numeric values of each char `( H I !)` which are `( 72 73 33)`.
 
 ```
 // Prints ASCII codes
@@ -607,7 +607,7 @@ int main(void)
 }
 ```
 
-When we do something like this, in our computer memory, we may have three boxes labeled ~c1~ , ~c2~, ~c3~ that store these variables when they are called, although in the computer's brain, down to the super low level, they would not be ~72~, ~73~ or ~33~ but just zeroes and ones.
+When we do something like this, in our computer memory, we may have three boxes labeled `c1` , `c2`, `c3` that store these variables when they are called, although in the computer's brain, down to the super low level, they would not be `72`, `73` or `33` but just zeroes and ones.
 
 Suppose we have a script to calculate the average of three number:
 
@@ -656,11 +656,11 @@ int main(void)
 
 Arrays are zero index.
 
-What does the number three ~[3]~? It represents the number of values that are reserved for a single variable. This is still a limitation of this program.
+What does the number three `[3]`? It represents the number of values that are reserved for a single variable. This is still a limitation of this program.
 
 The above code also violates the DRY principle which is "Don't Repeat Yourself". The Repetition is here:
 
-<img class="mx-auto w-1/2" src="/assets/orgNotesImages/cs50dry.png">
+<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/cs50dry.png">
 
 So, the next iteration of the same function could be:
 
@@ -685,7 +685,7 @@ int main(void)
 }
 ```
 
-In the above program, the constant ~N~ is actually a global variable. Using global variables is normally considered bad practice however it's OK in places where we use constants. 
+In the above program, the constant `N` is actually a global variable. Using global variables is normally considered bad practice however it's OK in places where we use constants. 
 
 The next iteration of this program would be below, where the number of scores can be dynamic, depending on the user.
 
@@ -726,13 +726,13 @@ float average(int length, int array[])
 
 ### Strings
 
-Strings are actually just arrays of characters (~char~). We can also just access individual char within a string just like how we would access a member of an array.
+Strings are actually just arrays of characters (`char`). We can also just access individual char within a string just like how we would access a member of an array.
 
-There is one special thing about a string and that is the lack of any preordained length associated with each of them. Any ~char~ can only take 1 bytes however a string can essentially be infinitely long.
+There is one special thing about a string and that is the lack of any preordained length associated with each of them. Any `char` can only take 1 bytes however a string can essentially be infinitely long.
 
-In C, a string ends with a special terminating character ~\0~. This is essentially to mark the end of a string variable in the computer's memory space.
+In C, a string ends with a special terminating character `\0`. This is essentially to mark the end of a string variable in the computer's memory space.
 
-The two ~printf()~ statements below prints the same content: ~EMMA~.
+The two `printf()` statements below prints the same content: `EMMA`.
 ```
 string names[4];
 names[0] = "EMMA";
@@ -746,15 +746,15 @@ printf("%c%c%c%c\n", names[0][0], names[0][1], names[0][2], names[0][3]);
 
 In the above example we have initialized four string variables. Although there is no concept of left-right, up-down in a computer memory space, we can think of it like the representation below:
 
-<img class="mx-auto w-1/2" src="/assets/orgNotesImages/memspace.png">
+<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/memspace.png">
 
 This is not what programming is. However it's good to know what's going on under the hood, which is just manipulation of data. 
 
 ### Going low-level under the hood
 
-Although we may not need to do this particular task, it would be good to know how the standard ~uppercase()~ functions work.
+Although we may not need to do this particular task, it would be good to know how the standard `uppercase()` functions work.
 
-If we look at an ASCII translation table, we will learn the the ASCII code of ~A~ is 65, ~a~ is ~97~, ~B~ is ~66, ~b~ is ~98~ and so on.. We also know that under the hood, characters are essentially just integers that are translated by the computes using ASCII translation which is made by human.
+If we look at an ASCII translation table, we will learn the the ASCII code of `A` is 65, `a` is `97`, `B` is `66, `b` is `98` and so on.. We also know that under the hood, characters are essentially just integers that are translated by the computes using ASCII translation which is made by human.
 
 Therefore, let's say we want to make a function that can be used to print all inputs in uppercase, this is how we would do it. This is also how this function is programmed under the hood.
 
@@ -784,7 +784,7 @@ int main(void)
 }
 ```
 
-Of course, we shouldn't really be programming these low-level functions. In C, we should be using the ~ctype.h~ library which contains ~toupper()~ function to do this sort of thing, i.e:
+Of course, we shouldn't really be programming these low-level functions. In C, we should be using the `ctype.h` library which contains `toupper()` function to do this sort of thing, i.e:
 
 ```
 // Uppercases string using ctype library (and an unnecessary condition)
@@ -837,7 +837,7 @@ int main(int argc, string argv[])
 
 The way that command line arguments work is that the extra words that come after our program's name in the terminal are stored in an array as well and can be accessed within our code.
 
-In C, ~arc~ is the argument count and ~argv~ is an array of string that are the arguments. In ~argv~, the very first argument is the name of the program being executed.
+In C, `arc` is the argument count and `argv` is an array of string that are the arguments. In `argv`, the very first argument is the name of the program being executed.
 
 This program below checks if there is one argument that is passed, if not the program would exit with failure.
 
@@ -858,7 +858,7 @@ int main(int argc, string argv[])
 
 ```
 
-In programming, a successfully executed program would return with a status code equal ~0~ . For unsucessful termination, we can use whatever, however let's keep it simple and use ~1~.
+In programming, a successfully executed program would return with a status code equal `0` . For unsucessful termination, we can use whatever, however let's keep it simple and use `1`.
 
 
 # Week 3 - Algorithms
@@ -891,7 +891,7 @@ Else if 50 > middle item
 
 ## Big O
 
-<img class="mx-auto w-1/2" src="/assets/orgNotesImages/bigO.png">
+<img class="mx-auto w-1/2" src="/assets/img/orgNotesImages/bigO.png">
 
 The graph above illustrates different algorithms with the big /O/ notation, which can be thought of as *"on the order of"*. Big /O/ notation represent the *upper bound* of the number of steps for our algorithm.
 
