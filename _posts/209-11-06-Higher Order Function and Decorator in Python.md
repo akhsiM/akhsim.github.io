@@ -448,11 +448,11 @@ display_info('Kenny', 26)
 
 After we ran the above, a log file was also created in our directory:
 
-#+begin_src bash
+```
 cat display_info.log
 ```
 
-#+begin_src 
+```
 | INFO:root:Ran with args: ('Kenny' | 26) | and kwargs: {} |
 ```
 
@@ -543,8 +543,8 @@ display_info('Kenny', 26)
 
 ```
 
-#+RESULTS:
+```
 : Kenny is 26 years old.
 : display_info ran in 0.013379096984863281 second(s)
-
+```
 Adding the ~funtools.wraps~ decorator ensure that the information from the original function is preserved.
