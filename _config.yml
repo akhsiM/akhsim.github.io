@@ -22,6 +22,9 @@ nav-menu:
   permalink: about
 - text: Blog
   permalink: blog
+## TODO: Consider re-organising posts into Notes and Posts
+# - text: Notes
+#   permalink: notes
 
 # use false to turn off any social media links
 twitter: false
