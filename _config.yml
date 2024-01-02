@@ -18,10 +18,10 @@ author-image: byJamesLayh.png  # file must be in the /assets/img/ folder
 show-nav-menu: true
 
 nav-menu:
-- text: About
-  permalink: About Me
+- text: About Me
+  permalink: about
 - text: Blog
-  permalink: Blog
+  permalink: blog
 - text: Tags
   permalink: tag
 ## TODO: Consider re-organising posts into Notes and Posts
