@@ -19,9 +19,9 @@ show-nav-menu: true
 
 nav-menu:
 - text: About
-  permalink: about
+  permalink: About Me
 - text: Blog
-  permalink: blog
+  permalink: Blog
 - text: Tags
   permalink: tag
 ## TODO: Consider re-organising posts into Notes and Posts
