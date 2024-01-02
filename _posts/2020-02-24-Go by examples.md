@@ -5,27 +5,24 @@ tags: programming
 ---
 Today I am starting to learn Go Lang at https://gobyexample.com/.
 
-* Go - General
+# Go - General
 
-** Go Workspace
+## Go Workspace
 
 Go programmers normally put all their source codes in a Go code in a single workspace including other packages and dependencies that are installed.
 
 The workspace is normally located within the $USER directory. The workspace folder should have the main ~src~ folder that contain ~.go~ code files and also a ~bin~ folder that contains the executable commands. There is also a ~pkg~ folder that  contains installed third-party packages.
 
 This is how a Go workspace is structured:
-[[./images/goworkspace.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/goworkspace.png">
 
-
-
-
-** Package Management in Go
+## Package Management in Go
 
 The concept of packages is quite familiar for Java, Javascript or Node programmer. A package is nothing but a directory with some code files, which exposes different variables (features) from a single point of reference.
 
 *Example*: You are working on project with more than a thousand functions that you constantly need to call. Some of these functions have similar behaviours or target the same input type. For example ~toUpperCase()~ and ~toLowerCase()~ both transform case of a ~string~, so we would put both of these functions together in one code file named /case.go/. We also have other functions that operates on ~string~ data so we would also write them in seperate code file under the same directory /string//. We would also have other directory that reside on the same level as /string//, which all live under a parent directory. 
 
-#+begin_src sh
+```sh
 package-name
 ├── string
 |  ├── case.go
@@ -34,7 +31,7 @@ package-name
 └── number
    ├── arithmetics.go
    └── primes.go
-#+end_src
+```
 
 In the above example, /string/ and /number/ are different packages.
 
@@ -53,14 +50,14 @@ When we run ~go install [app]~ command, Go will look for the ~[app]~ sub-directo
 There are two types of packages. An *executable package*  and a *utility package*. An executable pacakge is our main application since we will be running it. A utility package is not self-executable,  instead it *enhances* the functionality of an executable package by providing utility functions and other important assets.
 
 
-* Hello World
+# Hello World
 
 A classic programming course always starts with a 'Hello World' message.
 
 In go, the, this can be done by the following:
 
 /File name: hello-world.go/
-#+begin_src go 
+```go 
 package main
 
 import "fmt"
@@ -68,26 +65,26 @@ import "fmt"
 func main() {
 	fmt.Println("Hello world!")
 }
-#+end_src
+```
 
 To run the program we can use ~go run~. 
 
-#+begin_src sh
+```sh
 $ go run hello-world.go
 Hello world!
-#+end_src
+```
 
 Sometimes we need to build the programs into binaries. This can be done by ~go build~.
 
- [[./images/gobuild.png]]
+ <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/gobuild.png">
 
 
-* Values
+# Values
 
 Similarly to other languages, Go also has various value types including strings, integers, floats, booleans, etc.. These data types can also be used with operators that you'd normally expect.
 
 /values.go/
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -100,26 +97,26 @@ func main() {
 	fmt.Println(true || false)
 	fmt.Println(!true)
 }
-#+end_src
+```
 
-[[./images/govalues.png]]
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/govalues.png">
 
-* Variables
+# Variables
 
 A variable is a storage unit of a particular data type.
 
 In Go, variables are explicitly declared and used by the compiler. Variables are created by first using the ~var~ keyword then specifying the variable name (~x~). the type (~string~) and finally an initialized value (~Hello World~). The last step is optional.
 
-#+begin_src 
+```
 var x string = "Hello World"
-#+end_src
+```
 
 We can also do:
 
-#+begin_src 
+```
 var x string
 x = "first"
-#+end_src
+```
 
 Which means:
 - x string is a new variable
@@ -128,13 +125,13 @@ Which means:
 ~var~ declares one or more variables. Go will infer the type of initialized variables. Variables declared without a corresponding initialization are /zero-valued/, e.g the zero value for an int is 0.
 
 We can also use the *short-hand syntax* to declare and initializing variable: ~:=~:
-#+begin_src 
+```
 x := "Hello World"
-#+end_src
+```
 
 The type is not necessary because Go compiler is able to infer the type of variable based on the literal value that has been assigned ("Hello World").
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -163,7 +160,7 @@ func main() {
 	f := "apple"
 	fmt.Println(f)
 }
-#+end_src
+```
 
 #+RESULTS:
 : initial
@@ -173,7 +170,7 @@ func main() {
 : 0
 : apple
 
-* Constants
+# Constants
 
 Go support constants of the following data types: *character, string, boolean, numeric*.
 
@@ -187,7 +184,7 @@ A numeric constant has no type until it's given one, such as by an explicit conv
 
 A number can be given a type by using it in a context that requires one, such as a variable assignment or a function call. For example, ~math.Sin(x)~ expects x to be a ~float64~.
 
-#+begin_src go
+```go
 package main
 
 import (
@@ -209,7 +206,7 @@ func main() {
 	fmt.Println(math.Sin(n))
 
 }
-#+end_src
+```
 
 #+RESULTS:
 : constant
@@ -217,12 +214,12 @@ func main() {
 : 6000000000
 : -0.5608712390143394
 
-* For 
+# For 
 
 ~for~ is Go's only looping construct. Go does not have ~while~. 
 
 This is the most basic type of ~for~ loop in Go, with a single condition:
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -234,7 +231,7 @@ func main() {
     i = i + 1
   }
 }
-#+end_src
+```
 
 #+RESULTS:
 #+begin_example
@@ -251,7 +248,7 @@ func main() {
 #+end_example
 
 The above program could also be written like this, which is the classic *initial/condition/after* for loop declaration: 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -261,7 +258,7 @@ func main() {
 		fmt.Println(i)
 	}
 }
-#+end_src
+```
 
 #+RESULTS:
 #+begin_example
@@ -279,7 +276,7 @@ func main() {
 
 ~for~ without a condition will loop repeatedly until you ~break~ out or ~return~ from the enclosing function. We can also do ~continue~ to the next iteration of the loop.
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -308,7 +305,7 @@ func main() {
 	}
 }
 
-#+end_src
+```
 
 #+RESULTS:
 #+begin_example
@@ -324,9 +321,9 @@ loop
 5
 #+end_example
 
-** Five basic ~for~ loop patterns
+## Five basic ~for~ loop patterns
 
-*** Three-component loop
+### Three-component loop
 
 This is the basic loop. It contains three components:
 	- The init statement, e.g ~i := 1~.
@@ -335,7 +332,7 @@ This is the basic loop. It contains three components:
 	  - Otherwise, the loop is done.
 	- The post statement, e.g ~i++, runs.~
 	- Back to step 2, i.e checking if condition is stil true
-#+begin_src go
+```go
 package main
 import "fmt"
 
@@ -346,15 +343,15 @@ func main() {
 	}
 	fmt.Println(sum)
 }
-#+end_src
+```
 
 #+RESULTS:
 : 10
 
-*** While loop
+### While loop
 
 Although Go doesn't a ~while~ statement, if we skip the init and the post statements, we get a while loop.
-#+begin_src go
+```go
 package main
 import "fmt"
 
@@ -365,16 +362,16 @@ func main() {
 	}
 	fmt.Println(n) // 1*2*2*2
 }
-#+end_src
+```
 
 #+RESULTS:
 : 8
 
-*** Infinite loop
+### Infinite loop
 
 If we also skip the condition, we have an infite loop. The following program will never finish computing:
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -386,13 +383,13 @@ func main() {
 	}
 	fmt.Println(sum)
 }
-#+end_src
+```
 
-*** For-each range loop
+### For-each range loop
 
 Looping over elements in slices, arrays, maps, channels or strings is often best done with a range loop.
 
-#+begin_src go 
+```go 
 package main
 
 import "fmt"
@@ -405,7 +402,7 @@ func main() {
 		fmt.Println(i, s)
 	}
 }
-#+end_src
+```
 
 #+RESULTS:
 : [hello world]
@@ -417,11 +414,11 @@ func main() {
 - The second iteration variable is optional (~s~).
 - For a nil slice, the number of iterations is 0.
 
-***** String iteration
+##### String iteration
 
 You can also do *string iteration*: runes or bytes.
 
-#+begin_src go
+```go
 package main
 import "fmt"
 
@@ -431,7 +428,7 @@ func main() {
 	}
 }
 
-#+end_src
+```
 
 #+RESULTS:
 : U+65E5 '日' starts at byte position 0
@@ -443,7 +440,7 @@ func main() {
 
 To loop over individual bytes, we can simply use a normal for loop and string indexing:
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -454,14 +451,14 @@ func main() {
 		fmt.Printf("%x ", s[i])
 	}
 }
-#+end_src
+```
 
 #+RESULTS:
 : e6 97 a5 e6 9c ac e8 aa 9e
 
-***** Map iterations: key and values
+##### Map iterations: key and values
 
-	  #+begin_src go
+	  ```go
 package main 
 
 import "fmt"
@@ -476,7 +473,7 @@ func main() {
 		fmt.Println(k, v)
 	}
 }
-	  #+end_src
+	  ```
 
 	  #+RESULTS:
 	  : three 3
@@ -485,14 +482,14 @@ func main() {
 
 Note: The iteration order over maps is not specified and is not guaranteed to be the same order from one iteration to another, i.e if we re-run the above program it may print the key:value pair in a different order.
 
-*** Exit a loop
+### Exit a loop
 
 The ~break~ and ~continue~ keywords work just as they do in C and Java.
 
 ~continue~ = skip | begins the next iteration of the innermost ~for~ loop at its post statement
 ~break~ = stop | leaves the innermost ~for~, ~switch~ or ~select~ statement.
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -509,16 +506,16 @@ func main() {
 	}
 	fmt.Println(sum) // should be 2 + 4
 }
-#+end_src
+```
 
 #+RESULTS:
 : 6
 
-* If/ Else
+# If/ Else
 
 In Go, branching with ~if~ and ~else~ is straight-forward.
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -538,7 +535,7 @@ func main() {
 		fmt.Println(num, "has multiple digit")
 	}
 }
-#+end_src
+```
 
 #+RESULTS:
 : 7 is odd
@@ -546,7 +543,7 @@ func main() {
 
 In Go, we don't need parentheses around conditions. However the braces are required.
 
-* Switch
+# Switch
 
 ~switch~ statements express conditionals across *many branches*.
 
@@ -554,7 +551,7 @@ We can use commas to separate multiple expressions in the same ~case~ statement.
 
 Instead of doing this:
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -575,7 +572,7 @@ func main() {
 		fmt.Println("Five")
 	}
 }
-#+end_src
+```
 
 #+RESULTS:
 : One
@@ -586,7 +583,7 @@ We can use the ~switch~ statement.  A ~switch~ statement starts with the keyword
 
 Instead of doing the ~if~ statements above, we can do:
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -611,14 +608,14 @@ func main() {
 	}
 }
 
-#+end_src
+```
 
 #+RESULTS:
 : One
 
 .. to use the ~default~ statement:
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -643,14 +640,14 @@ func main() {
 	}
 }
 
-#+end_src
+```
 
 #+RESULTS:
 : Unknown number
 
 You can also *use ~switch~ without an expression*. It is an alternate way to express if/else logic.
 
-#+begin_src go
+```go
 package main
 
 import (
@@ -706,7 +703,7 @@ func main() {
 	whatAmI(0.6)
 }
 
-#+end_src
+```
 
 #+RESULTS:
 : Write 2 as two
@@ -716,16 +713,16 @@ func main() {
 : I'm an integer.
 : Don't know type string
 : Don't know type float64
-* Arrays
+# Arrays
 
 An array is a numbered sequence of elements of a single type with a fixed length. In Go they look like this:
-#+begin_src 
+```
 var x [5]int
-#+end_src
+```
 
 ~x~ is an example of an array which is composed of 5 ~int~
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -736,7 +733,7 @@ func main() {
 	fmt.Println(x)
 	fmt.Println(x[4])
 }
-#+end_src
+```
 
 #+RESULTS:
 : [0 0 0 0 100]
@@ -744,7 +741,7 @@ func main() {
 
 The statement ~x[4] = 100~ can be read as "set the 5th element of the array x to 100". In Go, similar to Python, arrays are indexed starting from 0.
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -774,7 +771,7 @@ func main() {
 	}
 	fmt.Println("2d:", twoD)
 }
-#+end_src
+```
 
 #+RESULTS:
 : emp: [0 0 0 0 0]
@@ -786,7 +783,7 @@ func main() {
 
 An example of program that uses array to compute the average test score:
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -807,7 +804,7 @@ func main() {
 	fmt.Println("total:", total)
 	fmt.Println("avg:", total/float64(len(score))) // We have to convert len(score) into a float64
 }
-#+end_src
+```
 
 #+RESULTS:
 : total: 326
@@ -816,7 +813,7 @@ func main() {
 We can also use a special form of the ~for~ loop:
 
 In this loop, ~i~ represents the current positio and ~value~ is the same as ~score[i]~. We use the keyword ~range~ followed by the name of the variable we want to loop over.
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -837,15 +834,15 @@ func main() {
 	fmt.Println("total:", total)
 	fmt.Println("avg:", total/float64(len(score))) // We have to convert len(score) into a float64
 }
-#+end_src
-#+begin_src 
+```
+```
 command-line-arguments
 /tmp/babel-SPIxT5/go-src-b7Uuux.go:16:6: i declared but not used
-#+end_src
+```
 
 The reason we go the error is that Go compiler does not allow us to create variables that are never used. As we don't use ~i~ insire of our loop, we need to change it to the underscore ~_~. An underscore (~_~) is used to tell the compiler that we don't need the variable.
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -867,13 +864,13 @@ func main() {
 	fmt.Println("total:", total)
 	fmt.Println("avg:", total/float64(len(score))) // We have to convert len(score) into a float64
 }
-#+end_src
+```
 
 #+RESULTS:
 : total: 326
 : avg: 65.2
 
-* *Slices*
+# #Slices#
 
 Slices are a key data type in Go. Slices give a more powerful interface to sequences than array.
 
@@ -895,7 +892,7 @@ Slices can also be copy'd.
 
 Slices support a slice operator with the syntax ~slice[low: high]~.
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -952,7 +949,7 @@ func main() {
 	fmt.Println("2d:", twoD)
 }
 
-#+end_src
+```
 
 #+RESULTS:
 #+begin_example
@@ -967,13 +964,13 @@ from 2: [c d e f]
 dcl: [hello world]
 2d: [[0] [1 2] [2 3 4]]
 #+end_example
-* Maps
+# Maps
 
 Maps are Go's built-in *associative data type*. This is called *dict* or *hashes* in other languages.
 
 To create an empty map, we need to use the built in ~make~ statement in this format: ~make(map[key-type]value-type)~
 
-#+begin_src go
+```go
 package main
 
 import "fmt"
@@ -1015,7 +1012,7 @@ func main() {
 	fmt.Println("optional 2nd value only:", o2o)
 }
 
-#+end_src
+```
 
 #+RESULTS:
 : map: map[k1:7 k2:13]
