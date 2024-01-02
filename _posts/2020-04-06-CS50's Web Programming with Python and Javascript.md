@@ -3254,7 +3254,8 @@ The above is an example where we can implement our automated testing, however we
 
 Using the *unittest* library, we'll be able to write automated test for complicated function. Let's try to translate our above testing to the `unittest` version:
 
-/(Note: in a real-world example, we should write tests *separately* from the functions that are being tested, i.e `import is_prime from prime`. However to make it easier to demonstrate I have copied them both into one.)/
+Note: in a real-world example, we should write tests *separately* from the functions that are being tested, i.e `import is_prime from prime`. However to make it easier to demonstrate I have copied them both into one.
+
 ```python
 import unittest
 import math 
