@@ -1,6 +1,6 @@
 ---
 title: Addiction
-layout: post-toc
+layout: post
 tags: psychology philosophize fitness
 ---
 
