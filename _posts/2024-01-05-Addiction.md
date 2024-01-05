@@ -12,7 +12,7 @@ I have recently started noticing that the energy expenditure numbers, tracked by
 
 So, let's rephrase that a little in a simpler format. As you get into the habit of regular exercising, you'll need to do more exercising, just to get the same output in energy expenditure. Exercising has a self-reinforcing mechanism.
 
-When anything has a self-reinforcing mechanism, the actual mechanic that drives it is called a Positive Feedback Loop. This concept exists in multiple disciplines. It drives cool phenomenons.
+When something has a self-reinforcing mechanism, the actual mechanic that drives it is called a Positive Feedback Loop. This concept exists in multiple disciplines. It drives cool phenomenons.
 
 ## Positive Feedback Loop 🔄
 
