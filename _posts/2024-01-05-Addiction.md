@@ -16,11 +16,11 @@ When something has a self-reinforcing mechanism, the actual mechanic that drives
 
 ## Positive Feedback Loop 🔄
 
-In a lifestyle context, a positive feedback loop can drive addiction. Any kind of addiction. Alcohol, gaming, cannabis, coffee..etc. In a psychology context, it can be a contributing force to panic attacks. In a weather context, a big enough bushfire can generate its own weather, including lightnings and thunderstorms that in turn generate more fires. Pretty sure this happened in Australia a few years ago. It's cool isn't it.
+In a lifestyle context, a positive feedback loop can drive addiction. Any kind of addiction. Alcohol, gaming, cannabis, coffee..etc. In a psychology context, it can be a contributing force to panic attacks. In a weather context, a big enough bushfire can generate its own weather, including lightnings and thunderstorms that in turn generate more fires. I am fairly sure this happened in Australia a few years ago. This loop thing is cool isn't it.
 
 <img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/posts/somemen.png">
 
-Most of these things are bad, but are they really, Positive Feedback Loop sounds kinda bad, but is it actually, or is it actually the monkey brain that we all have, that always tends to recognise the "bad" things easier 🙂. 
+Most of these things "sound" bad, but are they really, Positive Feedback Loop sounds kinda bad, but is it actually, or is it actually the monkey brain that we all have, that always tends to recognise the "bad" things easier 🙂. 
 
 Of course, lest not forget, we learned thousand of years ago from Socrates that nothing is intrinsically good nor bad. Positive Feedback Loop is the same. It an underlying force of nature. Don't think too much about the meta of it, just enough to leverage it.
 
