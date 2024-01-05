@@ -20,7 +20,7 @@ Stateful logic, a.k.a data that changes in an application, was tightly coupled w
 
 In order to reuse logic with class components, we would need to use shitty patterns that look and sound like black magic such as higher order components and render props, which is essentially passing components to other components. These complex strategies in turn lead to complex nested hierarchy of components, like so:
 
-![](/static/img/React Hooks/React Hooks-2021-07-24-13-37-50.png)
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/React Hooks-2021-07-24-13-37-50.png">
 
 There is one thing that we need to understand and that is: **Hooks are the building blocks of the React framework**.
 
@@ -32,7 +32,7 @@ Hooks are functions that always starts with `use` like `useSuperPower()`.
 
 There is one rule to using React Hooks: **We can only call them from the top level of a functional component.**
 
-![](/static/img/React Hooks/React Hooks-2021-07-24-13-42-04.png)
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/React Hooks-2021-07-24-13-42-04.png">
 
 - **Do not** call Hooks inside loops, conditions or nested functions.
 
@@ -166,7 +166,7 @@ On the subsequent rendering, when `useEffect` is called again, the previous clea
 
 This hook allows us to work with React's context API which allows us to share data with the entire component tree.
 
-![](/static/img/React Hooks/React Hooks-2021-07-24-14-30-09.png)
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/React Hooks-2021-07-24-14-30-09.png">
 
 Imagine that we have an object called `Mood` that can be either "happy" or "sad".
 
@@ -288,7 +288,7 @@ This is a variant of `setState` but goes about the task in a different way using
 
 Esentially, instead of updating the state, we dispatch certain actions that go to a reducer function, which then determines **how to computes the next state**.
 
-![](/static/img/React Hooks/React Hooks-2021-07-24-15-27-49.png)
+<img class="mx-auto w-1/2" src="{{site.baseurl}}/assets/img/orgNotesImages/React Hooks-2021-07-24-15-27-49.png">
 
 This function accepts a reducer function that accepts two arguments `(state, action) => newState`. It also accepts a second argument which is the initial state. 
 
