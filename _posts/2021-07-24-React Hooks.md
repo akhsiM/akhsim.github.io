@@ -14,7 +14,7 @@ Prior to React version 16.8, developers were required to write classses to take 
 
 React has 10 different hooks.
 
-## What's the point and what the hell is a hook?
+## What's the point and what the hell is a hook? 🤔
 
 Stateful logic, a.k.a data that changes in an application, was tightly coupled within a class component. What this means is that, in order to use stateful logic to build applications, we always needed to write a class.
 
