@@ -28,6 +28,6 @@ On the other side of the imaginary good-bad spectrum, Positive Feedback Loop is 
 
 Isn't it a bit cool how something as negatively sounding as "addiction", when explored thoughtfully, can also be leveraged to build wealth, and to improve personal fitness?
 
-The question now is how. How does one gets aboard the PFL train, that doesn't stop. That's for another day. As a person with self-diagnosed ADHD, I do have a bit of personal experience with addiction 🙂, and a lot of that is applicable in the context of how to "enter" the loop. But also as a person with self-diagnosed ADHD, I am also incredibly lazy. So I will stop writing right this very moment.
+The question now is how. How does one gets aboard the PFL train, that doesn't stop. That's for another day. As a person with self-diagnosed ADHD, I do have a bit of personal experience with addiction 🙂, and a lot of what I learned from that is applicable in the topic of how to "enter" the loop. But also as a person with self-diagnosed ADHD, I am also incredibly lazy. So I will stop writing right this very moment.
 
 
