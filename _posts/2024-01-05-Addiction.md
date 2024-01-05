@@ -24,7 +24,7 @@ Most of these things "sound" bad, but are they really, Positive Feedback Loop so
 
 Of course, lest not forget, we learned thousand of years ago from Socrates that nothing is intrinsically good nor bad. Positive Feedback Loop is the same. It an underlying force of nature. Don't think too much about the meta of it, just enough to leverage it.
 
-On the other side of the imaginary good-bad spectrum, Positive Feedback Loop is also the force that underlies compound interest in the realm of investing. Within the fitness context of what I am writing about, I will just call it "move more", as in you should move more. Not only that you'll get better at moving around, you'll also be conditioned in different ways to move more, meaning that the initial momentum needed to move, gets less and less over time.
+On the other side of the imaginary good-bad spectrum, Positive Feedback Loop is also the mechanic that underlies the concept of Compound Interest in the realm of investing. Within the fitness context, which is what I am writing about, I will just call the concept "move more", as in everyone should move more. Not only that you'll get better at moving around, you'll also be physiocally and psychologically conditioned in different ways to move more, and that the initial momentum needed to move, gets less and less over time. Moving gets easier over time.
 
 Isn't it a bit cool how something as negatively sounding as "addiction", when explored thoughtfully, can also be leveraged to build wealth, and to improve personal fitness?
 
