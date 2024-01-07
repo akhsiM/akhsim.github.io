@@ -1,5 +1,5 @@
 ---
-title: Addiction
+title: Positive Feedback Loop
 layout: post
 tags: psychology philosophize fitness
 ---
